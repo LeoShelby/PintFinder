@@ -17,7 +17,7 @@ public class WelcomeActivity extends AppCompatActivity {
         // LOGIN BUTTON
 
         Button login = findViewById(R.id.login);
-        findViewById(R.id.login).setOnClickListener(new View.OnClickListener() {
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
@@ -28,7 +28,7 @@ public class WelcomeActivity extends AppCompatActivity {
         // SIGN-UP BUTTON
 
         Button signup = findViewById(R.id.signupButton);
-        findViewById(R.id.signupButton).setOnClickListener(new View.OnClickListener() {
+        signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(WelcomeActivity.this, SignUpActivity.class);
