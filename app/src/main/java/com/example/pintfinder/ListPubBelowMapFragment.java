@@ -64,6 +64,7 @@ public class ListPubBelowMapFragment extends Fragment {
         mPubs.add(new Pub("Irish Pub", "Via Ariostus", "pub3"));
         mPubs.add(new Pub("Pub Longo", "Via Zieta", "pub2"));
         mPubs.add(new Pub("Pub REBBIBBIA", "Via LONGO", "pub1"));
+        mPubs.add(new Pub("Pub Borgorose", "Via Normandia", "pub4"));
 
         mAdapter = new HorizontalPubListAdapter(mPubs, getActivity());
         lw.setAdapter(mAdapter);
