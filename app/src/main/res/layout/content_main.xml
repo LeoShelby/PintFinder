@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FCEC35">
+    android:background="#FFC107"
+    android:orientation="vertical">
 
-    <fragment android:name="com.example.pintfinder.MapFragment"
+    <fragment
         android:id="@+id/mappina"
+        android:name="com.example.pintfinder.MapFragment"
         android:layout_width="match_parent"
         android:layout_height="400dp" />
 
 
     <TextView
         android:id="@+id/text_view_id"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:textSize="23dp"
-        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:text="Last Visited Pubs"
         android:textColor="#7D7D7D"
-        android:text="Last Visited Pubs" />
+        android:textSize="23dp"
+        android:textStyle="bold" />
 
-    <fragment android:name="com.example.pintfinder.ListPubBelowMapFragment"
+    <fragment
         android:id="@+id/listina"
+        android:name="com.example.pintfinder.ListPubBelowMapFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
 
 
 </LinearLayout>
