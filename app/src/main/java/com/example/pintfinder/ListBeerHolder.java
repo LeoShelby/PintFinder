@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Locale;
 
@@ -17,6 +18,7 @@ public class ListBeerHolder extends RecyclerView.ViewHolder {
         image = itemView.findViewById(R.id.image);
         price = itemView.findViewById(R.id.price);
     }
+
 
     public void setDetails(Beer beer) {
         name.setText(beer.getName());
