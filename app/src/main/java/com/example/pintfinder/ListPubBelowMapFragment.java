@@ -59,54 +59,30 @@ public class ListPubBelowMapFragment extends Fragment {
 
         lw = (RecyclerView) rootView.findViewById(R.id.list_pub_horizontal);
 
-        final ArrayList<Pub> mPubs = new ArrayList<Pub>();
 
-        mPubs.add(new Pub("Irish Pub", "Via Ariostus", "pub3"));
-        mPubs.add(new Pub("Pub Longo", "Via Zieta", "pub2"));
-        mPubs.add(new Pub("Pub REBBIBBIA", "Via LONGO", "pub1"));
-        mPubs.add(new Pub("Pub Borgorose", "Via Normandia", "pub4"));
+        final ArrayList<Pub> mPubs = SingletonPubs.Instance().getPubs();
 
         mAdapter = new HorizontalPubListAdapter(mPubs, getActivity());
         lw.setAdapter(mAdapter);
         lw.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
-        /*
-        ((HorizontalPubListAdapter)mAdapter).setOnItemClickListener(new HorizontalPubListAdapter().OnItemClickListener(){
+
+        ((HorizontalPubListAdapter)mAdapter).setOnItemClickListener(new HorizontalPubListAdapter.OnItemClickListener(){
             @Override
             public void onItemClick(View view, int position) {
-                Log.d("name","tumande");
-                Book selectedBook = mBooks.get(position);
-                Intent intent = new Intent(getContext(), BookActivity.class);
-                intent.putExtra("title",selectedBook.getTitle());
-                intent.putExtra("author",selectedBook.getAuthor());
-                intent.putExtra("description",selectedBook.getDescription());
-                intent.putExtra("thumbnail",selectedBook.getThumbnail());
-                intent.putExtra("isbn",selectedBook.getIsbn());
-                if(!selectedBook.getUntil().equals("")){
 
-                    String until = selectedBook.getUntil();
-                    SimpleDateFormat sdf = new SimpleDateFormat();
-                    sdf.applyPattern("dd MMMM yyyy");
+                Pub pub = mPubs.get(position);
 
-                    int month = Integer.parseInt(until.split("-")[1]);
-                    int day = Integer.parseInt(until.split("-")[2]);
-                    int year = Integer.parseInt(until.split("-")[0]);
+                Intent intent = new Intent(getContext(), PubActivity.class);
+                intent.putExtra("pub_name", pub.getName());
+                intent.putExtra("pub_address", pub.getAddress());
+                intent.putExtra("pub_image", pub.getImage());
+                intent.putExtra("pub_description", pub.getDescription());
 
-                    Calendar dd = Calendar.getInstance();
-                    dd.set(year,month,day,0,0);
-
-                    intent.putExtra("date",sdf.format(dd.getTime()));
-                }
-                if(selectedBook.getWished().equals("true")){
-                    intent.putExtra("wished",selectedBook.getWished());
-                }
                 startActivity(intent);
 
             }
         });
-
-        */
-
 
         // Inflate the layout for this fragment
         return rootView;
