@@ -21,7 +21,7 @@
         android:id="@+id/pub_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srcCompat="@drawable/pub1" />
+        app:srcCompat="@drawable/the_brazen_head" />
 
 </android.support.v7.widget.CardView>
 

@@ -3,6 +3,8 @@ package com.example.pintfinder;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.libraries.places.api.Places;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -34,6 +37,8 @@ import com.google.android.libraries.places.widget.AutocompleteFragment;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class HomePageLover extends AppCompatActivity
@@ -67,8 +72,6 @@ public class HomePageLover extends AppCompatActivity
 
     @Override
     public void onMapReady(final GoogleMap googleMap) {
-        // Add a marker in Sydney, Australia,
-        // and move the map's camera to the same location.
 
         // Initialize the AutocompleteSupportFragment.
         AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
@@ -93,18 +96,67 @@ public class HomePageLover extends AppCompatActivity
         });
 
 
+        //add my location
         if (ActivityCompat.checkSelfPermission(HomePageLover.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(HomePageLover.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) return;
 
-
         googleMap.setMyLocationEnabled(true);
-
         googleMap.getUiSettings().setZoomControlsEnabled(true);
 
-        LatLng sydney = new LatLng(-33.852, 151.211);
-        googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        //map starts in Piazza Bologna
+        LatLng PiazzaBologna = new LatLng(41.913192, 12.520805);
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(PiazzaBologna, 15.0f));
+
+        //googleMap.addMarker(new MarkerOptions().position(PiazzaBologna).title("Marker in Sydney"));
+
+        double latitude =0;
+        double longitude=0;
+
+        Geocoder coder = new Geocoder(this);
+
+        final ArrayList<Pub> mPubs = SingletonPubs.Instance().getPubs();
+        int size = mPubs.size();
+        for(int i = 0; i< size; i++) {
+            Pub pub = mPubs.get(i);
+            try {
+                ArrayList<Address> adresses = (ArrayList<Address>) coder.getFromLocationName(pub.getAddress(), 1);
+                for (Address add : adresses) {
+                    longitude = add.getLongitude();
+                    latitude = add.getLatitude();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+
+            LatLng tmp = new LatLng(latitude, longitude);
+
+            googleMap.addMarker(new MarkerOptions().position(tmp).title(pub.getName()));
+        }
+
+
+        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                Intent intent = new Intent(HomePageLover.this, PubActivity.class);
+
+                Pub pub = SingletonPubs.Instance().findPubByName(marker.getTitle());
+
+                intent.putExtra("pub_name", pub.getName());
+                intent.putExtra("pub_address", pub.getAddress());
+                intent.putExtra("pub_image", pub.getImage());
+                intent.putExtra("pub_description", pub.getDescription());
+
+                // Starting the  Activity
+                startActivity(intent);
+                //Log.d("mGoogleMap1", "Activity_Calling");
+            }
+        });
+
     }
+
+
 
     @Override
     public void onBackPressed() {
