@@ -1,6 +1,8 @@
 package com.example.pintfinder;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListBeerAdapter extends RecyclerView.Adapter<ListBeerHolder>   {
     private Context context;
@@ -30,17 +33,27 @@ public class ListBeerAdapter extends RecyclerView.Adapter<ListBeerHolder>   {
         return new ListBeerHolder(view);
     }
 
+
+
     @Override
-    public void onBindViewHolder(@NonNull ListBeerHolder listBeerHolder, int i) {
+    public void onBindViewHolder(@NonNull final ListBeerHolder listBeerHolder, int i) {
         final Beer beer = beers.get(i);
         listBeerHolder.setDetails(beer);
         listBeerHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // in questo modo passiamo il nome della birra cliccata all'activity BeerDescriptionActivity
-                Intent intent = new Intent(context, BeerDescriptionActivity.class);
+                Intent intent = new Intent(context, AddBeerActivity.class);
                 intent.putExtra("beerName", beer.getName());
-                context.startActivity(intent);
+                if (listBeerHolder.getActivity() instanceof SearchBeerFromDatabase) {
+                    // in questo modo passiamo il nome della birra cliccata all'activity BeerDescriptionActivity
+                    intent.putExtra("activity", "SearchBeerFromDatabase");
+                    context.startActivity(intent);
+
+                }
+                if (listBeerHolder.getActivity() instanceof ListTastedBeersActivity)    {
+                    intent.putExtra("activity", "ListTastedBeersActivity");
+                    context.startActivity(intent);
+                }
             }
         });
     }

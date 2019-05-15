@@ -61,23 +61,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-            <TextView
-                android:id="@+id/priceBeer"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
-                android:layout_marginBottom="32dp"
-                android:background="#FCEC35"
-                android:gravity="center"
-                android:text="TextView"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageBeer"
-                app:layout_constraintTop_toBottomOf="@+id/nameBeer" />
-
         </android.support.constraint.ConstraintLayout>
 
 
@@ -109,11 +92,11 @@
             <TextView
                 android:id="@+id/descriptionLabel"
                 android:layout_width="390dp"
-                android:layout_height="72dp"
+                android:layout_height="wrap_content"
                 android:background="#FCEC35"
                 android:gravity="center"
                 android:paddingLeft="40sp"
-                android:text="Description:"
+                android:text="Note:"
                 android:textAlignment="textStart"
                 android:textColor="#000000"
                 android:textSize="20sp"
@@ -122,8 +105,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/description"
+            <EditText
+                android:id="@+id/note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FCEC35"
@@ -131,7 +114,24 @@
                 android:paddingTop="15sp"
                 android:paddingRight="10sp"
                 android:paddingBottom="15sp"
-                android:text="TextView"
+                android:hint="Click here to add a note"
+                android:textColor="#8A000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionLabel" />
+
+            <TextView
+                android:id="@+id/savedNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FCEC35"
+                android:paddingLeft="10sp"
+                android:paddingTop="15sp"
+                android:paddingRight="10sp"
+                android:paddingBottom="15sp"
+                android:textColor="#8A000000"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -139,7 +139,93 @@
                 app:layout_constraintTop_toBottomOf="@+id/descriptionLabel" />
 
         </android.support.constraint.ConstraintLayout>
-        </android.support.v7.widget.CardView>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:background="#FCEC35"
+        android:backgroundTint="#FCEC35"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="6dp">
+
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            tools:context=".BeerDescriptionActivity">
+
+            <TextView
+                android:id="@+id/chooseThumb"
+                android:layout_width="390dp"
+                android:layout_height="wrap_content"
+                android:background="#FCEC35"
+                android:gravity="center"
+                android:paddingLeft="40sp"
+                android:paddingBottom="10sp"
+                android:text="Select one of the two status:"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/thumbUp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/thumb_up"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="150dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/chooseThumb"
+                app:layout_constraintStart_toStartOf="parent"
+                android:alpha="0.6"
+                app:layout_constraintTop_toBottomOf="@+id/chooseThumb" />
+
+            <ImageView
+                android:id="@+id/thumbAdded"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/thumb_up"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/thumbDown"
+                app:layout_constraintStart_toEndOf="@+id/thumbUp"
+                app:layout_constraintTop_toBottomOf="@+id/chooseThumb" />
+
+            <Button
+                android:id="@+id/thumbDown"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/chooseThumb"
+                app:layout_constraintTop_toBottomOf="@+id/chooseThumb"
+                android:background="@drawable/thumb_down"
+                android:alpha="0.6"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+
+    </android.support.v7.widget.CardView>
 
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
