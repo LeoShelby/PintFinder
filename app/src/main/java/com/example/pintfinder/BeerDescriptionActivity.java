@@ -1,3 +1,4 @@
+
 package com.example.pintfinder;
 
 import android.content.Intent;
@@ -35,9 +36,6 @@ public class BeerDescriptionActivity extends AppCompatActivity {
         name.setText(beer.getName());
         price.setText(beer.getPrice());
         description.setText(beer.getDescription());
-
-
-
 
     }
 }

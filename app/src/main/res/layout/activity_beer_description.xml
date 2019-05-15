@@ -60,24 +60,6 @@
                 app:layout_constraintStart_toEndOf="@+id/imageBeer"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
-            <TextView
-                android:id="@+id/priceBeer"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
-                android:layout_marginBottom="32dp"
-                android:background="#FCEC35"
-                android:gravity="center"
-                android:text="TextView"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageBeer"
-                app:layout_constraintTop_toBottomOf="@+id/nameBeer" />
-
         </android.support.constraint.ConstraintLayout>
 
 
@@ -154,14 +136,15 @@
 
 
         <Button
-            android:id="@+id/addToMyTastedBeer"
+            android:id="@+id/priceBeer"
             android:layout_width="312dp"
             android:layout_height="53dp"
             android:layout_marginTop="60sp"
             android:background="@drawable/btn_rounded"
-            android:text="Add to My Tasted Beer"
+            android:text="Price"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:clickable="false"
             app:layout_constrainedHeight="true"
             app:layout_constrainedWidth="false"
             app:layout_constraintBottom_toBottomOf="parent"
