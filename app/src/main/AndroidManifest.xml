@@ -15,12 +15,14 @@
         android:theme="@style/AppTheme">
         <activity android:name=".BeerDescriptionActivity"></activity>
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".ListBeersActivity" />
         <activity android:name=".ListTastedBeersActivity"></activity>
         <activity android:name=".AddBeerActivity"></activity>
-        <activity android:name=".SearchBeerFromDatabase"></activity>
+        <activity
+            android:name=".SearchBeerFromDatabase"
+            android:theme="@style/CustomActionBarTheme" />
         <activity android:name=".SignUpPubOwnerActivity" />
         <activity android:name=".SignUpPubLoverActivity" />
+        <activity android:name=".PubActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>
@@ -29,7 +31,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".HomePageLover"
             android:label="@string/app_name"
