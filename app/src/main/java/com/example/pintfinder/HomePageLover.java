@@ -6,12 +6,7 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -33,7 +28,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
-import com.google.android.libraries.places.widget.AutocompleteFragment;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 
@@ -147,11 +141,9 @@ public class HomePageLover extends AppCompatActivity
                 intent.putExtra("pub_address", pub.getAddress());
                 intent.putExtra("pub_image", pub.getImage());
                 intent.putExtra("pub_description", pub.getDescription());
-                intent.putExtra("pub_indexes", pub.getMenu());
+                intent.putExtra("pub_menu", pub.getMenu());
 
-                // Starting the  Activity
                 startActivity(intent);
-                //Log.d("mGoogleMap1", "Activity_Calling");
             }
         });
 
@@ -203,8 +195,12 @@ public class HomePageLover extends AppCompatActivity
             Intent intent = new Intent(HomePageLover.this, ListTastedBeersActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_help_lover) {
+            Intent intent = new Intent(HomePageLover.this, HelpLoverActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_info_lover) {
+            Intent intent = new Intent(HomePageLover.this, InfoActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_logout_lover) {
             Intent intent = new Intent(HomePageLover.this, WelcomeActivity.class);

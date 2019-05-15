@@ -44,17 +44,17 @@ public class PubActivity extends AppCompatActivity {
         int resourceId = getResources().getIdentifier(image, "drawable",getPackageName());
         Picasso.with(this).load(resourceId).fit().into(tImage);
 
-        /*
-        Button login = findViewById(R.id.menu_button);
-        login.setOnClickListener(new View.OnClickListener() {
+
+        Button menuButton = findViewById(R.id.menu_button);
+        menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PubActivity.this, ListBeersActivity.class);
+                Intent intent = new Intent(PubActivity.this, MenuPubActivity.class);
                 intent.putExtra("pub_menu", menu);
                 startActivity(intent);
             }
         });
-        */
+
 
     }
 

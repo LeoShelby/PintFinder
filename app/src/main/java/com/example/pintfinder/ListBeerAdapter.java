@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,11 @@ public class ListBeerAdapter extends RecyclerView.Adapter<ListBeerHolder>   {
                 }
                 if (listBeerHolder.getActivity() instanceof ListTastedBeersActivity)    {
                     intent.putExtra("activity", "ListTastedBeersActivity");
+                    context.startActivity(intent);
+                }
+                if (listBeerHolder.getActivity() instanceof MenuPubActivity)    {
+                    intent = new Intent(context, BeerDescriptionActivity.class);
+                    intent.putExtra("beerName", beer.getName());
                     context.startActivity(intent);
                 }
             }

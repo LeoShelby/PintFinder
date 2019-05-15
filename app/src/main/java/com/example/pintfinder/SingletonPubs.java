@@ -24,12 +24,40 @@ public class SingletonPubs {
                     add("Brooklyn East IPA");
                     add("Kilkenny");
                     add("Münchner Märzen");
+                    add("Carlsberg");
+                    add("Tucher Weizen");
+                    add("Wel Scotch");
+                    add("Guinness");
                 }
             }));
 
-            //instance.addPub(new Pub("The Brazenhead", "Via Livorno 2, Roma", "the_brazen_head", "The Brazen Head claims to be Rome's oldest pub and to have started pouring beers since 1198, despite the building being from 1750. The kitchen offers typical Irish dishes (Irish stew, stew with the Guinness, etc.) and offers live music every night.\n"));
-            //instance.addPub(new Pub("Mulligan’s", "Via Contessa di Bertinoro 5, Roma", "mulligans","Mulligan's is another of Rome's oldest pubs being open since 1782. It is famous for having been immortalized in James Joyce's The Dubliners collection of stories."));
-            //instance.addPub(new Pub("The Long Hall", "Via Catania 5, Roma", "the_long_hall","Located a stone's throw from Piazza Bologna, The Long Hall is one of the few traditional pubs on Via Catania, lined with modern pubs, clubs and bars. The pub is furnished in classic old Irish pub style and is characterized by its simplicity. Excellent choice to enjoy a pint in peace."));
+            instance.addPub(new Pub("The Brazenhead", "Via Livorno 2, Roma", "the_brazen_head", "The Brazen Head claims to be Rome's oldest pub and to have started pouring beers since 1198, despite the building being from 1750. The kitchen offers typical Irish dishes (Irish stew, stew with the Guinness, etc.) and offers live music every night.", new ArrayList<String>() {
+                {
+                    add("Grimbergen Blonde");
+                    add("Heineken");
+                    add("Münchner Märzen");
+                    add("Magners");
+                    add("Kilkenny");
+                }
+            }));
+
+
+
+            instance.addPub(new Pub("Mulligan’s", "Via Contessa di Bertinoro 5, Roma", "mulligans","Mulligan's is another of Rome's oldest pubs being open since 1782. It is famous for having been immortalized in James Joyce's The Dubliners collection of stories.", new ArrayList<String>() {
+                {
+                    add("Hoegaarden");
+                    add("Foster's Lager");
+                    add("Magners");
+                }
+            }));
+
+            instance.addPub(new Pub("The Long Hall", "Via Catania 5, Roma", "the_long_hall","Located a stone's throw from Piazza Bologna, The Long Hall is one of the few traditional pubs on Via Catania, lined with modern pubs, clubs and bars. The pub is furnished in classic old Irish pub style and is characterized by its simplicity. Excellent choice to enjoy a pint in peace.", new ArrayList<String>() {
+                {
+                    add("Wel Scotch");
+                    add("Kilkenny");
+                    add("Münchner Märzen");
+                }
+            }));
 
 
         }

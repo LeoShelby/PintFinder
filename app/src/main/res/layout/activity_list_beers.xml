@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/fab_margin"
+        android:visibility="visible"
         android:src="@drawable/ic_add_black_24dp"
         app:backgroundTint="#FF5900"
         app:borderWidth="0dp" />
