@@ -38,6 +38,16 @@
         </activity>
 
 
+        <activity android:name=".MenuPubActivity"></activity>
+        <activity
+            android:name=".HelpLoverActivity"
+            android:label="Help">
+        </activity>
+        <activity
+            android:name=".InfoActivity"
+            android:label="Info">
+        </activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_key" />
