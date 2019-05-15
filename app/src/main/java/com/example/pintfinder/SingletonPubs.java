@@ -19,11 +19,11 @@ public class SingletonPubs {
         {
             //dal sito https://vividublino.com/pub-e-locali/i-20-migliori-pub-tradizionali-irlandesi-di-dublino/
             instance = new SingletonPubs();
-            instance.addPub(new Pub("The Auld Dubliner", "Via Ravenna 40, Roma", "auld_dubliner", "Located in the heart of Piazza Bologna, with live music 7 days a week and the restaurant that offers some of the typical dishes of the Irish tradition, it is a favorite destination for tourists.", new ArrayList<Integer>() {
+            instance.addPub(new Pub("The Auld Dubliner", "Via Ravenna 40, Roma", "auld_dubliner", "Located in the heart of Piazza Bologna, with live music 7 days a week and the restaurant that offers some of the typical dishes of the Irish tradition, it is a favorite destination for tourists.", new ArrayList<String>() {
                 {
-                    add(1);
-                    add(4);
-                    add(5);
+                    add("Brooklyn East IPA");
+                    add("Kilkenny");
+                    add("Münchner Märzen");
                 }
             }));
 

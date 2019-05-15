@@ -41,10 +41,6 @@ public class ListBeerHolder extends RecyclerView.ViewHolder {
         if (getActivity() != null)  {
             name.setText(beer.getName());
             image.setImageResource(beer.getImage());
-            if (getActivity() instanceof ListBeersActivity) {
-                price.setText(beer.getPrice());
-                thumb.setVisibility(View.GONE);
-            }
             if (getActivity() instanceof ListTastedBeersActivity)   {
                 thumb.setImageResource(beer.getThumb());
                 price.setVisibility(View.GONE);

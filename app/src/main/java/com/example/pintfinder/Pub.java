@@ -7,15 +7,15 @@ public class Pub {
     String address;
     String image;
     String description;
-    ArrayList<Integer> indexes;
+    ArrayList<String> menu;
 
 
-    public Pub(String name, String address, String image, String description, ArrayList<Integer> indexes) {
+    public Pub(String name, String address, String image, String description, ArrayList<String> menu) {
         this.name = name;
         this.address = address;
         this.image = image;
         this.description = description;
-        this.indexes = indexes;
+        this.menu = menu;
     }
 
     public String getName() {
@@ -32,5 +32,5 @@ public class Pub {
 
     public String getDescription(){return description;}
 
-    public ArrayList<Integer> getIndexes(){return indexes;}
+    public ArrayList<String> getMenu(){return menu;}
 }

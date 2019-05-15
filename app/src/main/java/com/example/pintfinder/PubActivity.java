@@ -29,8 +29,7 @@ public class PubActivity extends AppCompatActivity {
         String address = i.getStringExtra("pub_address");
         String image = i.getStringExtra("pub_image");
 
-        final ArrayList<Integer> indexes = i.getIntegerArrayListExtra("pub_indexes");
-        //Log.e("AOOOEE",indexes.get(0) +"");
+        final ArrayList<String> menu = i.getStringArrayListExtra("pub_menu");
 
         TextView tName = findViewById(R.id.pub_name);
         TextView tAddress = findViewById(R.id.pub_address);
@@ -45,26 +44,18 @@ public class PubActivity extends AppCompatActivity {
         int resourceId = getResources().getIdentifier(image, "drawable",getPackageName());
         Picasso.with(this).load(resourceId).fit().into(tImage);
 
-
+        /*
         Button login = findViewById(R.id.menu_button);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PubActivity.this, ListBeersActivity.class);
-                intent.putExtra("indexes", indexes);
+                intent.putExtra("pub_menu", menu);
                 startActivity(intent);
             }
         });
+        */
 
     }
-
-
-    public void setupUI() {
-
-        Log.e("TE STO A PASSA:", "AOOOO");
-
-
-    }
-
 
 }
