@@ -2,47 +2,38 @@ package com.example.pintfinder;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class ListBeersActivity extends AppCompatActivity {
+public class ListTastedBeersActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ListBeerAdapter adapter;
-    private ArrayList<Beer> beerArrayList;
+    private ArrayList<Beer> tastedBeers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_beers);
 
-
-
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        beerArrayList = SingletonBeers.Instance().getBeers();
-        adapter = new ListBeerAdapter(this, beerArrayList);
+        ArrayList<Beer> tastedBeers = SingletonBeers.Instance().getTastedBeers();
+
+        adapter = new ListBeerAdapter(this, tastedBeers);
         recyclerView.setAdapter(adapter);
 
-
-
-        FloatingActionButton fab = findViewById(R.id.fab);
+        final FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ListBeersActivity.this, LoginActivity.class);
+                Intent intent = new Intent(ListTastedBeersActivity.this, SearchBeerFromDatabase.class);
                 startActivity(intent);
             }
         });
-
-
-
-
     }
 }

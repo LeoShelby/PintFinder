@@ -5,14 +5,18 @@ public class Beer {
     private int image; // per ora la lascio stringa, poi si vedrà
     private String description;
     private String price;
+    private int thumb;
+    private String note;
 
     public Beer()   {}
 
-    public Beer(String name, int image, String description, String price) {
+    public Beer(String name, int image, String description, String price, int thumb, String note) {
         this.name = name;
         this.image = image;
         this.description = description;
         this.price = price;
+        this.thumb = thumb;
+        this.note = note;
     }
 
     public String getName() {
@@ -46,4 +50,19 @@ public class Beer {
     public void setPrice(String price) {
         this.price = price;
     }
+
+    public int getThumb()   {   return thumb; }
+
+    public void setThumb(int thumb) {   this.thumb = thumb; }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+
+
 }

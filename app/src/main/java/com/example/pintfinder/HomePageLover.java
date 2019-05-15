@@ -59,7 +59,7 @@ public class HomePageLover extends AppCompatActivity
         mapFragment.getMapAsync(this);
 
 
-        Places.initialize(getApplicationContext(), "AIzaSyDv1uwpyWhP1TyZuDsXatg3CaSE7e6rzRU");
+        Places.initialize(getApplicationContext(), "AIzaSyDwkSIQg8my5U-DVYxpyEhRA0Yk_2r-z6c");
         PlacesClient placesClient = Places.createClient(this);
 
 

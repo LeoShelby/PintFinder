@@ -13,7 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BeerDescriptionActivity"></activity>
+        <activity android:name=".AddBeerActivity" />
+        <activity android:name=".SearchBeerFromDatabase" />
+        <activity android:name=".ListTastedBeersActivity" />
+        <activity android:name=".BeerDescriptionActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".ListBeersActivity" />
         <activity android:name=".SignUpPubOwnerActivity" />
@@ -26,13 +29,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".HomePageLover"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
