@@ -5,10 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class PubActivity extends AppCompatActivity {
 
@@ -17,20 +21,16 @@ public class PubActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pub);
 
-        setupUI();
-
-    }
-
-
-    public void setupUI() {
-
-        Log.e("TE STO A PASSA:", "AOOOO");
+        //setupUI();
 
         Intent i = getIntent();
         String title = i.getStringExtra("pub_name");
         String description = i.getStringExtra("pub_description");
         String address = i.getStringExtra("pub_address");
         String image = i.getStringExtra("pub_image");
+
+        final ArrayList<Integer> indexes = i.getIntegerArrayListExtra("pub_indexes");
+        //Log.e("AOOOEE",indexes.get(0) +"");
 
         TextView tName = findViewById(R.id.pub_name);
         TextView tAddress = findViewById(R.id.pub_address);
@@ -44,6 +44,27 @@ public class PubActivity extends AppCompatActivity {
 
         int resourceId = getResources().getIdentifier(image, "drawable",getPackageName());
         Picasso.with(this).load(resourceId).fit().into(tImage);
+
+
+        Button login = findViewById(R.id.menu_button);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PubActivity.this, ListBeersActivity.class);
+                intent.putExtra("indexes", indexes);
+                startActivity(intent);
+            }
+        });
+
     }
+
+
+    public void setupUI() {
+
+        Log.e("TE STO A PASSA:", "AOOOO");
+
+
+    }
+
 
 }

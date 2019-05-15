@@ -147,6 +147,7 @@ public class HomePageLover extends AppCompatActivity
                 intent.putExtra("pub_address", pub.getAddress());
                 intent.putExtra("pub_image", pub.getImage());
                 intent.putExtra("pub_description", pub.getDescription());
+                intent.putExtra("pub_indexes", pub.getIndexes());
 
                 // Starting the  Activity
                 startActivity(intent);

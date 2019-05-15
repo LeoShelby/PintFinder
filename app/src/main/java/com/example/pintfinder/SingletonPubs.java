@@ -19,10 +19,17 @@ public class SingletonPubs {
         {
             //dal sito https://vividublino.com/pub-e-locali/i-20-migliori-pub-tradizionali-irlandesi-di-dublino/
             instance = new SingletonPubs();
-            instance.addPub(new Pub("The Auld Dubliner", "Via Ravenna 40, Roma", "auld_dubliner", "Located in the heart of Piazza Bologna, with live music 7 days a week and the restaurant that offers some of the typical dishes of the Irish tradition, it is a favorite destination for tourists."));
-            instance.addPub(new Pub("The Brazenhead", "Via Livorno 2, Roma", "the_brazen_head", "The Brazen Head claims to be Rome's oldest pub and to have started pouring beers since 1198, despite the building being from 1750. The kitchen offers typical Irish dishes (Irish stew, stew with the Guinness, etc.) and offers live music every night.\n"));
-            instance.addPub(new Pub("Mulligan’s", "Via Contessa di Bertinoro 5, Roma", "mulligans","Mulligan's is another of Rome's oldest pubs being open since 1782. It is famous for having been immortalized in James Joyce's The Dubliners collection of stories."));
-            instance.addPub(new Pub("The Long Hall", "Via Catania 5, Roma", "the_long_hall","Located a stone's throw from Piazza Bologna, The Long Hall is one of the few traditional pubs on Via Catania, lined with modern pubs, clubs and bars. The pub is furnished in classic old Irish pub style and is characterized by its simplicity. Excellent choice to enjoy a pint in peace."));
+            instance.addPub(new Pub("The Auld Dubliner", "Via Ravenna 40, Roma", "auld_dubliner", "Located in the heart of Piazza Bologna, with live music 7 days a week and the restaurant that offers some of the typical dishes of the Irish tradition, it is a favorite destination for tourists.", new ArrayList<Integer>() {
+                {
+                    add(1);
+                    add(4);
+                    add(5);
+                }
+            }));
+
+            //instance.addPub(new Pub("The Brazenhead", "Via Livorno 2, Roma", "the_brazen_head", "The Brazen Head claims to be Rome's oldest pub and to have started pouring beers since 1198, despite the building being from 1750. The kitchen offers typical Irish dishes (Irish stew, stew with the Guinness, etc.) and offers live music every night.\n"));
+            //instance.addPub(new Pub("Mulligan’s", "Via Contessa di Bertinoro 5, Roma", "mulligans","Mulligan's is another of Rome's oldest pubs being open since 1782. It is famous for having been immortalized in James Joyce's The Dubliners collection of stories."));
+            //instance.addPub(new Pub("The Long Hall", "Via Catania 5, Roma", "the_long_hall","Located a stone's throw from Piazza Bologna, The Long Hall is one of the few traditional pubs on Via Catania, lined with modern pubs, clubs and bars. The pub is furnished in classic old Irish pub style and is characterized by its simplicity. Excellent choice to enjoy a pint in peace."));
 
 
         }
