@@ -16,6 +16,9 @@
         <activity android:name=".BeerDescriptionActivity"></activity>
         <activity android:name=".SignUpActivity" />
         <activity android:name=".ListBeersActivity" />
+        <activity android:name=".ListTastedBeersActivity"></activity>
+        <activity android:name=".AddBeerActivity"></activity>
+        <activity android:name=".SearchBeerFromDatabase"></activity>
         <activity android:name=".SignUpPubOwnerActivity" />
         <activity android:name=".SignUpPubLoverActivity" />
         <activity android:name=".LoginActivity" />

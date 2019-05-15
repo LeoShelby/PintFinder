@@ -200,7 +200,8 @@ public class HomePageLover extends AppCompatActivity
         if (id == R.id.nav_home_lover) {
             // Handle the camera action
         } else if (id == R.id.nav_tasted_lover) {
-
+            Intent intent = new Intent(HomePageLover.this, ListTastedBeersActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_help_lover) {
 
         } else if (id == R.id.nav_info_lover) {

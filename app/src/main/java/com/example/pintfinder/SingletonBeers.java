@@ -10,7 +10,7 @@ public class SingletonBeers {
     private static final int SIZE_TASTED_BEERS = 6;
     private static SingletonBeers instance;
     private ArrayList<Beer> beers;
-    private static LinkedHashMap<String, Integer> tastedBeers;
+    private static ArrayList<String> tastedBeers;
 
     //no outer class can initialize this class's object
     private SingletonBeers() {}
@@ -36,9 +36,9 @@ public class SingletonBeers {
             instance.addBeer(new Beer("Magners", R.drawable.magners, "Commercial cider made with a controlled yeast then pasteurised and artificially carbonated. Sold as Bulmers in Ireland and as Magners in the rest of the world for legal reasons.", "€7.50 50 cl", R.drawable.thumb_up, ""));
             instance.addBeer(new Beer("Wel Scotch", R.drawable.welscotch, "Wel Scotch is made with peat-smoked whisky malt from the Scottish Highlands. A coppery amber-coloured beer, Wel Scotch is best drunk slightly chilled to appreciate the subtle smoky hints of whisky.", "€7.50 30 cl", R.drawable.thumb_up, ""));
             instance.addBeer(new Beer("Guinness", R.drawable.guinness, "Guinness Black Lager is cold-brewed with roasted barley to deliver the refreshing taste of lager with the unique character of Guinness.","€7.50 40 cl", R.drawable.thumb_up, ""));
-            tastedBeers = new LinkedHashMap<>();
+            tastedBeers = new ArrayList<>();
             for (int i = 0; i < SIZE_TASTED_BEERS; i++)
-                tastedBeers.put(instance.beers.get(i).getName(), i);
+                tastedBeers.add(instance.beers.get(i).getName());
         }
         return instance;
     }
@@ -58,22 +58,22 @@ public class SingletonBeers {
 
     public ArrayList<Beer> getTastedBeers() {
         ArrayList<Beer> array = new ArrayList<>();
-        for (int i = 0; i < tastedBeers.size(); i++)
-            array.add(beers.get(tastedBeers.keySet().toArray().toString());
+        for (int i = 0; i < tastedBeers.size(); i++)    {
+            array.add(instance.findBeerByName(tastedBeers.get(i)));
         }
         return array;
     }
 
-    public void setTastedBeers(LinkedHashMap<String, Integer> tastedBeers) {
+    public void setTastedBeers(ArrayList<String> tastedBeers) {
         SingletonBeers.tastedBeers = tastedBeers;
     }
 
     public void addTastedBeer(String beer)  {
-        tastedBeers.put(beer, SingletonBeers.Instance().getIndexByNameBeer(beer));
+        tastedBeers.add(beer);
     }
 
     public void deleteTastedBeer(String beer)   {
-        tastedBeers.remove(SingletonBeers.Instance().getIndexByNameBeer(beer));
+        tastedBeers.remove(beer);
     }
 
 
@@ -107,7 +107,7 @@ public class SingletonBeers {
     public ArrayList<Beer> showOnlyNonTastedBeers()    {
         ArrayList<Beer> newBeers = new ArrayList<>();
         for (int i = 0; i < beers.size(); i++)  {
-            if (!tastedBeers.containsKey(beers.get(i).getName()))
+            if (!tastedBeers.contains(beers.get(i).getName()))
                 newBeers.add(beers.get(i));
         }
         return newBeers;
