@@ -23,7 +23,7 @@ public class ListTastedBeersActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        ArrayList<Beer> tastedBeers = SingletonBeers.Instance().getTastedBeers();
+        ArrayList<Beer> tastedBeers = SingletonUsers.Instance().getTastedBeers();
 
         adapter = new ListBeerAdapter(this, tastedBeers);
         recyclerView.setAdapter(adapter);
