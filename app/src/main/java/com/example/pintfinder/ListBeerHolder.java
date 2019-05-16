@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,14 +42,16 @@ public class ListBeerHolder extends RecyclerView.ViewHolder {
         if (getActivity() != null)  {
             name.setText(beer.getName());
             image.setImageResource(beer.getImage());
+            if (getActivity() instanceof MenuPubActivity)   {
+                Log.e("MenuPubActivity", "Siamo in MenuPubActivity");
+                price.setText(beer.getPrice());
+            }
             if (getActivity() instanceof ListTastedBeersActivity)   {
+                Log.e("ListTastedBeersActivity", "Siamo in ListTastedBeersActivity");
                 thumb.setImageResource(beer.getThumb());
                 price.setVisibility(View.GONE);
             }
-            if (getActivity() instanceof SearchBeerFromDatabase)    {
-                thumb.setVisibility(View.GONE);
-                price.setVisibility(View.GONE);
-            }
+
         }
         else    {
             System.out.println("SIAMO DENTRO LISTBEERHOLDER.JAVA");

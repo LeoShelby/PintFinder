@@ -1,5 +1,6 @@
 package com.example.pintfinder;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
+    ProgressDialog progressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String username = usernameView.getText().toString();
+                progressDialog = new ProgressDialog(LoginActivity.this);
+                progressDialog.setMessage("Loading..."); // Setting Message
+                progressDialog.setTitle("Login"); // Setting Title
+                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
+                progressDialog.show(); // Display Progress Dialog
+                progressDialog.setCancelable(false);
+
+
                 if (username.equals("georg")) {
                     // PubLover
                     Intent intent = new Intent(LoginActivity.this, HomePageLover.class);//ListBeersActivity.class);//HomePageLover.class);
@@ -36,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
                     // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     //startActivity(intent);
                 }
-                else    {
+                else {
                     Toast.makeText(LoginActivity.this, "Authentication Failed.", Toast.LENGTH_SHORT).show();
                 }
             }
