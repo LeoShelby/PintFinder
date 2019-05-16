@@ -38,6 +38,7 @@ public class ListBeerAdapter extends RecyclerView.Adapter<ListBeerHolder>   {
 
     @Override
     public void onBindViewHolder(@NonNull final ListBeerHolder listBeerHolder, int i) {
+        Log.e("ListBeerAdapter", "Siamo nel metodo onBindViewHolder");
         final Beer beer = beers.get(i);
         listBeerHolder.setDetails(beer);
         listBeerHolder.itemView.setOnClickListener(new View.OnClickListener() {

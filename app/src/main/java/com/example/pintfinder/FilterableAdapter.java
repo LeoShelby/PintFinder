@@ -46,6 +46,7 @@ import java.util.ArrayList;
 
             viewHolder.image.setImageResource(mFilteredList.get(i).getImage());
             viewHolder.name.setText(mFilteredList.get(i).getName());
+            viewHolder.price.setText(mFilteredList.get(i).getType());
         }
 
         @Override
@@ -94,11 +95,13 @@ import java.util.ArrayList;
         public class ViewHolder extends RecyclerView.ViewHolder{
             private ImageView image;
             private TextView name;
+            private TextView price;
             public ViewHolder(View view) {
                 super(view);
 
                 image = view.findViewById(R.id.image);
                 name = view.findViewById(R.id.name);
+                price = view.findViewById(R.id.price);
 
             }
         }

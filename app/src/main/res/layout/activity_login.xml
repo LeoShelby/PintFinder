@@ -60,6 +60,7 @@
         android:layout_marginEnd="8dp"
         android:text="Access the app as PubLover or PubOwner"
         android:textAlignment="center"
+        android:textColor="#6F6F6F"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

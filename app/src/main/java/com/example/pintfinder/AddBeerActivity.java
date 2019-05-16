@@ -13,6 +13,7 @@ import android.widget.Toast;
 public class AddBeerActivity extends AppCompatActivity {
     private ImageView image;
     private TextView name;
+    private TextView type;
     private Button thumbUp;
     private Button thumbDown;
     private ImageView thumbAdded;
@@ -40,15 +41,18 @@ public class AddBeerActivity extends AppCompatActivity {
         deleteButton = findViewById(R.id.addToMyTastedBeer);
         note = findViewById(R.id.note);
         savedNote = findViewById(R.id.savedNote);
+        type = findViewById(R.id.typeBeer);
 
 
 
         image.setImageResource(beer.getImage());
         name.setText(beer.getName());
+        type.setText(beer.getType());
 
         String activity = extras.getString("activity");
         if (activity.equals("SearchBeerFromDatabase"))  {
             thumbAdded.setVisibility(View.GONE);
+
             addListenerOnButton();
             addListenerOnButton();
             savedNote.setVisibility(View.GONE);

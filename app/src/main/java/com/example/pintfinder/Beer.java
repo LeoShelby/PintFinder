@@ -7,16 +7,36 @@ public class Beer {
     private String price;
     private int thumb;
     private String note;
+    private String type;
+    private String nationality;
 
     public Beer()   {}
 
-    public Beer(String name, int image, String description, String price, int thumb, String note) {
+    public Beer(String name, int image, String description, String price, int thumb, String note, String type, String nationality) {
         this.name = name;
         this.image = image;
         this.description = description;
         this.price = price;
         this.thumb = thumb;
         this.note = note;
+        this.type = type;
+        this.nationality = nationality;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String alcohol) {
+        this.nationality = alcohol;
     }
 
     public String getName() {

@@ -60,6 +60,25 @@
                 app:layout_constraintStart_toEndOf="@+id/imageBeer"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/priceBeer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textColor="#FF6F6F6F"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/nameBeer"
+                app:layout_constraintStart_toEndOf="@+id/imageBeer"
+                app:layout_constraintTop_toBottomOf="@+id/nameBeer" />
+
+
         </android.support.constraint.ConstraintLayout>
 
 
@@ -114,6 +133,7 @@
                 android:paddingRight="10sp"
                 android:paddingBottom="15sp"
                 android:text="TextView"
+                android:textColor="#6F6F6F"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -124,37 +144,6 @@
         </android.support.v7.widget.CardView>
 
 
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="6dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginEnd="6dp"
-        tools:context=".BeerDescriptionActivity">
-
-
-        <Button
-            android:id="@+id/priceBeer"
-            android:layout_width="312dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="60sp"
-            android:background="@drawable/btn_rounded"
-            android:text="Price"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:clickable="false"
-            app:layout_constrainedHeight="true"
-            app:layout_constrainedWidth="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-
-    </android.support.constraint.ConstraintLayout>
 
 
 
