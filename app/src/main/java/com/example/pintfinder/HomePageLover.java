@@ -161,6 +161,7 @@ public class HomePageLover extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            finishAffinity();
         }
     }
 

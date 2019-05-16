@@ -50,6 +50,7 @@ public class HomePageOwner extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            finishAffinity();
         }
     }
 
