@@ -27,13 +27,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String username = usernameView.getText().toString();
-                progressDialog = new ProgressDialog(LoginActivity.this);
-                progressDialog.setMessage("Loading..."); // Setting Message
-                progressDialog.setTitle("Login"); // Setting Title
-                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
-                progressDialog.show(); // Display Progress Dialog
-                progressDialog.setCancelable(false);
-
 
                 if (username.equals("georg")) {
                     // PubLover
