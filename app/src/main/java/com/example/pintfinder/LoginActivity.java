@@ -11,10 +11,10 @@ import android.widget.Toast;
 public class LoginActivity extends AppCompatActivity {
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         final EditText usernameView = findViewById(R.id.username);
 
         // LOGIN BUTTON
@@ -30,11 +30,11 @@ public class LoginActivity extends AppCompatActivity {
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // con questo comando vengono eliminate dalla stack le activity di login in modo che se viene premuto il back button dalla home si esce direttamente dall'app, solo con il bottone di LOG OUT si può tornare all'activity di LOGIN!
                     startActivity(intent);
                 }
-                else if (username.equals("anita"))  {
+                else if (username.equals("maria"))  {
                     // Pub Owner
-                    //Intent intent = new Intent(LoginActivity.this, MainActivity.class); // sostituire MainActivity.class con il nome dell'Activity riguardante l'homepage del PubOwner
-                    // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    //startActivity(intent);
+                    Intent intent = new Intent(LoginActivity.this, HomePageOwner.class); // sostituire MainActivity.class con il nome dell'Activity riguardante l'homepage del PubOwner
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
                 }
                 else    {
                     Toast.makeText(LoginActivity.this, "Authentication Failed.", Toast.LENGTH_SHORT).show();
