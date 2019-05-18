@@ -1,6 +1,10 @@
 package com.example.pintfinder;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class AddBeerActivity extends AppCompatActivity {
+    final Context context = this;
     private ImageView image;
     private TextView name;
     private TextView type;
@@ -59,10 +64,44 @@ public class AddBeerActivity extends AppCompatActivity {
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    addBeer(beer);
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                    // set title
+                    alertDialogBuilder.setTitle("Confirm your action");
+
+                    // set dialog message
+                    alertDialogBuilder
+                            .setMessage("Are you sure you want to add this beer to your tasted beers?")
+                            .setCancelable(false)
+                            .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,int id) {
+                                    // if this button is clicked, close
+                                    // current activity
+
+                                    addBeer(beer);
+                                    Toast.makeText(getApplicationContext(), "The beer has been successfully added to My Tasted Beer!", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(AddBeerActivity.this, ListTastedBeersActivity.class);//ListBeersActivity.class);//HomePageLover.class);
+                                    startActivity(intent);
+                                }
+                            })
+                            .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,int id) {
+                                    // if this button is clicked, just close
+                                    // the dialog box and do nothing
+                                    dialog.cancel();
+                                }
+                            });
+
+                    // create alert dialog
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+
+                    // show it
+                    alertDialog.show();
+
+                    /*addBeer(beer);
                     Toast.makeText(getApplicationContext(), "The beer has been successfully added to My Tasted Beer!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(AddBeerActivity.this, HomePageLover.class);//ListBeersActivity.class);//HomePageLover.class);
-                    startActivity(intent);
+                    startActivity(intent);*/
                 }
             });
 
@@ -78,10 +117,44 @@ public class AddBeerActivity extends AppCompatActivity {
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    deleteBeer(beer);
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                    // set title
+                    alertDialogBuilder.setTitle("Confirm your action");
+
+                    // set dialog message
+                    alertDialogBuilder
+                            .setMessage("Are you sure you want to delete this beer from your tasted beers?")
+                            .setCancelable(false)
+                            .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,int id) {
+                                    // if this button is clicked, close
+                                    // current activity
+
+                                    deleteBeer(beer);
+                                    Toast.makeText(getApplicationContext(), "The beer has been successfully deleted from My Tasted Beer!", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(AddBeerActivity.this, ListTastedBeersActivity.class);//ListBeersActivity.class);//HomePageLover.class);
+                                    startActivity(intent);
+                                }
+                            })
+                            .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,int id) {
+                                    // if this button is clicked, just close
+                                    // the dialog box and do nothing
+                                    dialog.cancel();
+                                }
+                            });
+
+                    // create alert dialog
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+
+                    // show it
+                    alertDialog.show();
+
+                    /*deleteBeer(beer);
                     Toast.makeText(getApplicationContext(), "The beer has been successfully deleted from My Tasted Beer!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(AddBeerActivity.this, HomePageLover.class);//ListBeersActivity.class);//HomePageLover.class);
-                    startActivity(intent);
+                    startActivity(intent);*/
                 }
             });
 

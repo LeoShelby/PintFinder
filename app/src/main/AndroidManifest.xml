@@ -19,8 +19,9 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".BeerDescriptionActivity" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".ListTastedBeersActivity" />
-        <activity android:name=".AddBeerActivity" />
+        <activity android:name=".ListTastedBeersActivity"/>
+        <activity android:name=".AddBeerActivity"
+            />
         <activity
             android:name=".SearchBeerFromDatabase"
             android:theme="@style/CustomActionBarTheme" />
