@@ -63,7 +63,7 @@ public class SearchBeerFromDatabase extends AppCompatActivity {
 
         initViews();
 
-        mArrayList = SingletonBeers.Instance().showOnlyNonTastedBeers();
+        mArrayList = SingletonUsers.Instance().showOnlyNonTastedBeers();
         mAdapter = new FilterableAdapter(this, mArrayList);
         mRecyclerView.setAdapter(mAdapter);
 

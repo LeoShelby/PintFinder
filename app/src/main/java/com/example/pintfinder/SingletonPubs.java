@@ -70,14 +70,6 @@ public class SingletonPubs {
         return pubs;
     }
 
-    public Pub getPub(Pub pub)  {
-        if (pubs.contains(pub))    {
-            return pubs.get(pubs.indexOf(pub));
-        }
-        else    {
-            return null;
-        }
-    }
 
     public void addPub(Pub pub) {
         if (pubs == null)    {

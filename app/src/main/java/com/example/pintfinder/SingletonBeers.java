@@ -47,35 +47,6 @@ public class SingletonBeers {
         return beers;
     }
 
-    public Beer getBeer(Beer beer)  {
-        if (beers.contains(beer))    {
-            return beers.get(beers.indexOf(beer));
-        }
-        else    {
-            return null;
-        }
-    }
-
-    public ArrayList<Beer> getTastedBeers() {
-        ArrayList<Beer> array = new ArrayList<>();
-        for (int i = 0; i < tastedBeers.size(); i++)    {
-            array.add(instance.findBeerByName(tastedBeers.get(i)));
-        }
-        return array;
-    }
-
-    public void setTastedBeers(ArrayList<String> tastedBeers) {
-        SingletonBeers.tastedBeers = tastedBeers;
-    }
-
-    public void addTastedBeer(String beer)  {
-        tastedBeers.add(beer);
-    }
-
-    public void deleteTastedBeer(String beer)   {
-        tastedBeers.remove(beer);
-    }
-
 
     public void addBeer(Beer beer) {
         if (beers == null)    {
@@ -93,26 +64,6 @@ public class SingletonBeers {
         }
         return null;
     }
-
-    public int getIndexByNameBeer(String name)  {
-        int i = 0;
-        for (i = 0; i < beers.size(); i++)  {
-            if (beers.get(i).getName().equals(name))    {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    public ArrayList<Beer> showOnlyNonTastedBeers()    {
-        ArrayList<Beer> newBeers = new ArrayList<>();
-        for (int i = 0; i < beers.size(); i++)  {
-            if (!tastedBeers.contains(beers.get(i).getName()))
-                newBeers.add(beers.get(i));
-        }
-        return newBeers;
-    }
-
 
 
 }

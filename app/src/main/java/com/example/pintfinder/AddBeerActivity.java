@@ -116,15 +116,16 @@ public class AddBeerActivity extends AppCompatActivity {
 
     public void addBeer(Beer beer)   {
         beer.setNote(note.getText().toString());
-        if (thumbUp.getAlpha() == 255)
+        if (thumbUp.getAlpha() == 1)
             beer.setThumb(R.drawable.thumb_up);
         else    {
             beer.setThumb(R.drawable.thumb_down);
         }
-        SingletonBeers.Instance().addTastedBeer(beer.getName());
+
+        SingletonUsers.Instance().addBeer(beer.getName());
     }
 
     public void deleteBeer(Beer beer)    {
-        SingletonBeers.Instance().deleteTastedBeer(beer.getName());
+        SingletonUsers.Instance().deleteBeer(beer.getName());
     }
 }
