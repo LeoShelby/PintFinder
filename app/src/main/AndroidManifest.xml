@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UpdateMenuActivity" />
+        <activity android:name=".UpdateMenuActivity"
+            android:label="Pub Menu"/>
         <activity
             android:name=".CreateMenuActivity"
             android:theme="@style/CustomActionBarTheme" />
@@ -50,7 +51,8 @@
             android:name=".HomePageLover"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MenuPubActivity" />
+        <activity android:name=".MenuPubActivity"
+            android:label="Pub Menu"/>
         <activity
             android:name=".HelpLoverActivity"
             android:label="Help" />
