@@ -60,11 +60,20 @@ public class ListPubBelowMapFragment extends Fragment {
         lw = (RecyclerView) rootView.findViewById(R.id.list_pub_horizontal);
 
 
-        final ArrayList<Pub> mPubs = SingletonPubs.Instance().getPubs();
+        //final ArrayList<Pub> mPubs = SingletonPubs.Instance().getPubs();
+
+        final ArrayList<Pub> mPubs = SingletonUsers.Instance().getBookedPubs();
 
         mAdapter = new HorizontalPubListAdapter(mPubs, getActivity());
         lw.setAdapter(mAdapter);
         lw.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+
+
+        if (mAdapter.getItemCount() == 0)
+        {
+            lw.setVisibility(View.GONE);
+            rootView.findViewById(R.id.no_booked_pubs).setVisibility(View.VISIBLE);
+        }
 
 
         ((HorizontalPubListAdapter)mAdapter).setOnItemClickListener(new HorizontalPubListAdapter.OnItemClickListener(){

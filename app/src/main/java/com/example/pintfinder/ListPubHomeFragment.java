@@ -48,6 +48,13 @@ public class ListPubHomeFragment extends ListFragment {
         mListView.setDividerHeight(0);
         mListView.setDivider(null);
 
+
+        if (mAdapter.getCount() == 0)
+        {
+            mListView.setVisibility(View.GONE);
+            rootView.findViewById(R.id.no_created_pubs).setVisibility(View.VISIBLE);
+        }
+
         // Inflate the layout for this fragment
         return rootView;
     }

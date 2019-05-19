@@ -14,7 +14,32 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
+        android:visibility="visible"
         android:listSelector="@android:color/transparent" >
     </android.support.v7.widget.RecyclerView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/no_booked_pubs"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:visibility="gone"
+        android:textAlignment="center"
+        app:cardCornerRadius="7dp"
+        app:cardElevation="5dp"
+        app:cardBackgroundColor="#FCEC35">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start now to book your favourite Pub!\nYour last visited pubs will be displayed here :)"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"/>
+
+
+    </android.support.v7.widget.CardView>
 
 </FrameLayout>

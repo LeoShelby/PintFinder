@@ -38,6 +38,12 @@ public class ListTastedBeersActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        if (adapter.getItemCount() == 0)
+        {
+            recyclerView.setVisibility(View.GONE);
+            findViewById(R.id.no_tasted_beers).setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

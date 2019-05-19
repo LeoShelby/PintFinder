@@ -5,16 +5,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFC107">
 
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="visible"
         android:background="#FFC107"
         android:scrollbars="vertical">
     </android.support.v7.widget.RecyclerView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/no_tasted_beers"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:visibility="gone"
+        android:textAlignment="center"
+        app:cardCornerRadius="7dp"
+        app:cardElevation="5dp"
+        app:cardBackgroundColor="#FCEC35">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start now to add your tasted beers!\nYour beers will be displayed here :)"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"/>
+
+
+    </android.support.v7.widget.CardView>
 
 
     <android.support.design.widget.FloatingActionButton

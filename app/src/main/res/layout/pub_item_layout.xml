@@ -15,7 +15,8 @@
     android:layout_height="130dp"
     app:cardCornerRadius="7dp"
     app:cardPreventCornerOverlap="false"
-    app:contentPadding="0dp">
+    app:contentPadding="0dp"
+    app:cardBackgroundColor="#FCEC35">>
 
     <ImageView
         android:id="@+id/pub_image"

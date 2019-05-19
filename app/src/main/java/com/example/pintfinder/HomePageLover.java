@@ -16,6 +16,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.maps.model.Marker;
@@ -65,6 +67,11 @@ public class HomePageLover extends AppCompatActivity
         PlacesClient placesClient = Places.createClient(this);
 
 
+        if(SingletonUsers.Instance().getUser().equals("anita")) {
+            View hView = navigationView.getHeaderView(0);
+            TextView nav_user = (TextView) hView.findViewById(R.id.user_name);
+            nav_user.setText("Anita Smith");
+        }
     }
 
     @Override

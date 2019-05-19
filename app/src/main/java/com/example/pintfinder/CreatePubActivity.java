@@ -40,6 +40,11 @@ public class CreatePubActivity extends AppCompatActivity {
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
+        ImageView imageView = (ImageView) findViewById(R.id.pub_image);
+
+        int resourceId = getResources().getIdentifier("load_image", "drawable",getPackageName());
+        Picasso.with(this).load(resourceId).fit().into(imageView);
+
         ImageView button = (ImageView) findViewById(R.id.pub_image);
         button.setOnClickListener(new View.OnClickListener() {
 

@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class HomePageOwner extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -41,6 +42,13 @@ public class HomePageOwner extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        if(SingletonUsers.Instance().getUser().equals("paul")) {
+            View hView = navigationView.getHeaderView(0);
+            TextView nav_user = (TextView) hView.findViewById(R.id.user_name);
+            nav_user.setText("Paul West");
+        }
     }
 
     @Override

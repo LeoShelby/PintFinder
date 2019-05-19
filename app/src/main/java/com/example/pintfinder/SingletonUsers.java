@@ -20,6 +20,9 @@ public class SingletonUsers {
     private ArrayList<String> anitaBeers;
     private ArrayList<String> paulPubs;
 
+    private ArrayList<String> georgBookedPubs;
+    private ArrayList<String> anitaBookedPubs;
+
 
 
     //no outer class can initialize this class's object
@@ -40,11 +43,17 @@ public class SingletonUsers {
             instance.anitaBeers = new ArrayList<String>();
             instance.mariaPubs = new ArrayList<String>();
             instance.paulPubs = new ArrayList<String>();
+            instance.georgBookedPubs = new ArrayList<String>();
+            instance.anitaBookedPubs = new ArrayList<String>();
+
 
             for (int i = 0; i < SIZE_TASTED_BEERS; i++)
                 instance.georgBeers.add(instanceBeers.getBeers().get(i).getName());
             for (int i = 0; i < 2; i++){
                 instance.mariaPubs.add(instancePubs.getPubs().get(i).getName());
+            }
+            for (int i = 0; i < 3; i++){
+                instance.georgBookedPubs.add(instancePubs.getPubs().get(i).getName());
             }
 
         }
@@ -131,7 +140,27 @@ public class SingletonUsers {
         this.user = user;
     }
 
+    public ArrayList<Pub> getBookedPubs(){
+        ArrayList<Pub> bookedPubs = new ArrayList<>();
+        SingletonPubs instance = SingletonPubs.Instance();
 
+        if(user.equals("georg")){
+            for(String pub: georgBookedPubs){
+                bookedPubs.add(instance.findPubByName(pub));
+            }
+        }
+        else{
+            for(String pub: anitaBookedPubs){
+                bookedPubs.add(instance.findPubByName(pub));
+            }
+        }
+
+        return bookedPubs;
+    }
+
+    public String getUser(){
+        return  user;
+    }
 
 }
 
