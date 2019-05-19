@@ -7,21 +7,25 @@
     android:background="#FFC107"
     tools:context=".SignUpPubLoverActivity">
 
-    <TextView
-        android:id="@+id/signupPubLoverLabel"
-        android:layout_width="312dp"
-        android:layout_height="53dp"
+    <ImageView
+        android:id="@+id/pubLover_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="8dp"
-        android:text="Sign-Up as PubLover"
+        android:clickable="true"
+        android:onClick="onClick"
+        android:src="@drawable/load_image"
         android:textAlignment="center"
         android:textColor="#000000"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="OnClick" />
 
     <TextView
         android:id="@+id/usernameLabel"
@@ -35,7 +39,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signupPubLoverLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/pubLover_image" />
 
     <EditText
         android:id="@+id/username"
