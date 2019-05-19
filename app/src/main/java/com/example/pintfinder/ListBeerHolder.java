@@ -51,6 +51,10 @@ public class ListBeerHolder extends RecyclerView.ViewHolder {
                 thumb.setImageResource(beer.getThumb());
                 price.setVisibility(View.GONE);
             }
+            if (getActivity() instanceof UpdateMenuActivity)   {
+                Log.e("ListTastedBeersActivity", "Siamo in ListTastedBeersActivity");
+                price.setText(beer.getPrice());
+            }
 
         }
         else    {

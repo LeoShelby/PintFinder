@@ -61,7 +61,7 @@ public class AddBeerActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     addBeer(beer);
                     Toast.makeText(getApplicationContext(), "The beer has been successfully added to My Tasted Beer!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(AddBeerActivity.this, HomePageLover.class);//ListBeersActivity.class);//HomePageLover.class);
+                    Intent intent = new Intent(AddBeerActivity.this, ListTastedBeersActivity.class);//ListBeersActivity.class);//HomePageLover.class);
                     startActivity(intent);
                 }
             });
@@ -80,7 +80,7 @@ public class AddBeerActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     deleteBeer(beer);
                     Toast.makeText(getApplicationContext(), "The beer has been successfully deleted from My Tasted Beer!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(AddBeerActivity.this, HomePageLover.class);//ListBeersActivity.class);//HomePageLover.class);
+                    Intent intent = new Intent(AddBeerActivity.this, ListTastedBeersActivity.class);//ListBeersActivity.class);//HomePageLover.class);
                     startActivity(intent);
                 }
             });

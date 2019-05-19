@@ -141,5 +141,17 @@
             android:textStyle="bold"
             android:layout_gravity="center"/>
 
+
+        <Button
+            android:id="@+id/delete_pub_button"
+            android:layout_width="312dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="20sp"
+            android:background="@drawable/btn_rounded"
+            android:text="Delete Pub"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+
     </LinearLayout>
 </LinearLayout>

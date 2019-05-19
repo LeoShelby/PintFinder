@@ -11,11 +11,12 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-public class MenuPubActivity extends AppCompatActivity {
+public class UpdateMenuActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ListBeerAdapter adapter;
     private ArrayList<Beer> menuPub;
+    private String name;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -30,17 +31,43 @@ public class MenuPubActivity extends AppCompatActivity {
         menuPub = new ArrayList<Beer>();
 
         Intent i = getIntent();
+        name = i.getStringExtra("pub_name");
         final ArrayList<String> menu = i.getStringArrayListExtra("pub_menu");
         for(String beer: menu){
             menuPub.add(databaseBeers.findBeerByName(beer));
         }
 
         FloatingActionButton button = (FloatingActionButton) findViewById(R.id.fab);
-        button.setVisibility(View.GONE);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UpdateMenuActivity.this, CreateMenuActivity.class);
+                intent.putExtra("pub_name", name);
+                intent.putExtra("activity","UpdateMenuActivity");
+                startActivity(intent);
+            }
+        });
 
 
-        adapter = new ListBeerAdapter(this, menuPub);
+        adapter = new ListBeerAdapter(this, menuPub, name);
         recyclerView.setAdapter(adapter);
 
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(UpdateMenuActivity.this,PubActivity.class);
+
+        Pub pub = SingletonPubs.Instance().findPubByName(name);
+        i.putExtra("pub_name",name);
+        i.putExtra("pub_description",pub.getDescription());
+        i.putExtra("pub_address",pub.getAddress());
+        i.putExtra("pub_image",pub.getImage());
+        i.putExtra("pub_menu",pub.getMenu());
+
+        i.putExtra("activity","UpdateMenuActivity");
+
+        startActivity(i);
     }
 }

@@ -143,7 +143,17 @@
         </android.support.constraint.ConstraintLayout>
         </android.support.v7.widget.CardView>
 
-
+    <Button
+        android:id="@+id/delete_beer_from_menu"
+        android:layout_width="312dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="20sp"
+        android:background="@drawable/btn_rounded"
+        android:text="Delete Beer"
+        android:textSize="18sp"
+        android:visibility="gone"
+        android:textStyle="bold"
+        android:layout_gravity="center"/>
 
 
 

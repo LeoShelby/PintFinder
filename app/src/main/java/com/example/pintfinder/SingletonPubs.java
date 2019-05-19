@@ -89,6 +89,40 @@ public class SingletonPubs {
     }
 
 
+    public ArrayList<Beer> getNonMenubeers(String namePub){
+        Pub pub = findPubByName(namePub);
+        ArrayList<Beer> database = SingletonBeers.Instance().getBeers();
+        ArrayList<String> menu = pub.getMenu();
+
+        ArrayList<Beer> res = new ArrayList<>();
+
+
+        for(Beer beer: database) {
+            if (!menu.contains(beer.getName())) res.add(beer);
+        }
+
+        return res;
+
+    }
+
+    public void addBeerToMenu(String namePub,Beer beer){
+        Pub pub = findPubByName(namePub);
+        pub.addBeerToMenu(beer.getName());
+    }
+
+    public void deleteBeerFromMenu(String namePub,Beer beer){
+        Pub pub = findPubByName(namePub);
+        pub.deleteBeerFromMenu(beer.getName());
+    }
+
+
+    public void deletePub(Pub pub){
+        if (pubs == null)    {
+            pubs = new ArrayList<>();
+        }
+        pubs.remove(pub);
+    }
+
 
 
 }

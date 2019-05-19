@@ -2,14 +2,18 @@ package com.example.pintfinder;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,57 +23,42 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class ListPubHomeFragment extends Fragment {
+public class ListPubHomeFragment extends ListFragment {
 
-    private RecyclerView lw;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-
-    public RecyclerView getLw() {
-        return lw;
-    }
-
-    public void setLw(RecyclerView lw) {
-        this.lw = lw;
-    }
-
-    public RecyclerView.Adapter getmAdapter() {
-        return mAdapter;
-    }
-
-    public void setmAdapter(RecyclerView.Adapter mAdapter) {
-        this.mAdapter = mAdapter;
-    }
+    VerticalPubListAdapter mAdapter;
+    final ArrayList<Pub> mPubs = SingletonUsers.Instance().getPubs();
 
     public ListPubHomeFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-
-    @Override
-    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_list_pub_home, container, false);
 
-        lw = (RecyclerView) rootView.findViewById(R.id.list_pub_vertical);
+        //lw = (RecyclerView) rootView.findViewById(R.id.list_pub_vertical);
 
 
-        final ArrayList<Pub> mPubs = SingletonPubs.Instance().getPubs();
-
-        mAdapter = new VerticalPubListAdapter(mPubs, getActivity());
-        lw.setAdapter(mAdapter);
-        lw.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        mAdapter = new VerticalPubListAdapter(getActivity().getBaseContext(),R.layout.pub_home_item_layout,mPubs);
+        setListAdapter(mAdapter);
 
 
-        ((VerticalPubListAdapter)mAdapter).setOnItemClickListener(new VerticalPubListAdapter.OnItemClickListener(){
+        ListView mListView = rootView.findViewById(android.R.id.list);
+        mListView.setDividerHeight(0);
+        mListView.setDivider(null);
+
+        // Inflate the layout for this fragment
+        return rootView;
+    }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        //Log.e("QOO","viewCreatedPOP");
+
+        ListView l = (ListView) getListView();
+        l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Pub pub = mPubs.get(position);
 
@@ -80,13 +69,10 @@ public class ListPubHomeFragment extends Fragment {
                 intent.putExtra("pub_description", pub.getDescription());
                 intent.putExtra("pub_menu", pub.getMenu());
 
-                startActivity(intent);
+                intent.putExtra("activity", "ListPubHomeFragment");
 
+                startActivity(intent);
             }
         });
-
-        // Inflate the layout for this fragment
-        return rootView;
     }
-
 }

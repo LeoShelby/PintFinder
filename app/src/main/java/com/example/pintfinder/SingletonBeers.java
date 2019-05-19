@@ -65,6 +65,9 @@ public class SingletonBeers {
         return null;
     }
 
+    public void setPrice(Beer beer, String price){
+        beer.setPrice("€ "+ price);
+    }
 
 }
 

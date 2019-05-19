@@ -1,10 +1,14 @@
 
 package com.example.pintfinder;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,8 +28,8 @@ public class BeerDescriptionActivity extends AppCompatActivity {
 
         // recupera il riferimento alla birra cliccata nell'activity della lista delle birre
         Bundle extras = getIntent().getExtras();
-        String beerName = extras.getString("beerName");
-        Beer beer = SingletonBeers.Instance().findBeerByName(beerName);
+        final String beerName = extras.getString("beerName");
+        final Beer beer = SingletonBeers.Instance().findBeerByName(beerName);
 
         image = findViewById(R.id.imageBeer);
         name = findViewById(R.id.nameBeer);
@@ -37,5 +41,45 @@ public class BeerDescriptionActivity extends AppCompatActivity {
         price.setText(beer.getPrice());
         description.setText(beer.getDescription());
 
+
+        String activity = extras.getString("activity");
+        final String pubName = extras.getString("pub_name");
+
+        if(activity!=null) {
+            if (activity.equals("UpdateMenuActivity")) {
+                Button deleteBeer = findViewById(R.id.delete_beer_from_menu);
+                deleteBeer.setVisibility(View.VISIBLE);
+                deleteBeer.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        AlertDialog.Builder builderr = new AlertDialog.Builder(BeerDescriptionActivity.this);
+                        builderr.setTitle("") //
+                                .setMessage("Do you really want to remove:\n "+ beerName + "?") //
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Intent intent = new Intent(BeerDescriptionActivity.this, UpdateMenuActivity.class);
+                                        Toast.makeText(getBaseContext(), "The beer has been successfully delete from the Menu!", Toast.LENGTH_SHORT).show();
+                                        Pub pub = SingletonPubs.Instance().findPubByName(pubName);
+                                        SingletonPubs.Instance().deleteBeerFromMenu(pubName, beer);
+                                        intent.putExtra("pub_menu", pub.getMenu());
+                                        intent.putExtra("pub_name", pubName);
+                                        startActivity(intent);
+                                        dialog.dismiss();
+                                    }
+                                }) //
+                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        // TODO
+                                        dialog.dismiss();
+                                    }
+                                });
+                        builderr.show();
+                    }
+                });
+            }
+        }
     }
+
+
 }

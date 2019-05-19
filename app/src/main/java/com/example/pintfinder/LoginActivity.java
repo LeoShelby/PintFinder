@@ -43,6 +43,22 @@ public class LoginActivity extends AppCompatActivity {
                     //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
+                else if (username.equals("anita"))  {
+                    // Pub Owner
+                    SingletonUsers instance = SingletonUsers.Instance();
+                    instance.setUser(username);
+                    Intent intent = new Intent(LoginActivity.this, HomePageLover.class); // sostituire MainActivity.class con il nome dell'Activity riguardante l'homepage del PubOwner
+                    //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                }
+                else if (username.equals("paul"))  {
+                    // Pub Owner
+                    SingletonUsers instance = SingletonUsers.Instance();
+                    instance.setUser(username);
+                    Intent intent = new Intent(LoginActivity.this, HomePageOwner.class); // sostituire MainActivity.class con il nome dell'Activity riguardante l'homepage del PubOwner
+                    //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                }
                 else {
                     Toast.makeText(LoginActivity.this, "Authentication Failed.", Toast.LENGTH_SHORT).show();
                 }

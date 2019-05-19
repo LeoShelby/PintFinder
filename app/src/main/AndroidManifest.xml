@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -13,13 +14,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".UpdateMenuActivity" />
+        <activity
+            android:name=".CreateMenuActivity"
+            android:theme="@style/CustomActionBarTheme" />
+        <activity
+            android:name=".CreatePubActivity"
+            android:label="Create New Pub" />
         <activity
             android:name=".HomePageOwner"
             android:label="@string/title_activity_home_page_owner"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity android:name=".BeerDescriptionActivity" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".ListTastedBeersActivity" />
+        <activity
+            android:name=".ListTastedBeersActivity"
+            android:label="Your Tasted Beers" />
         <activity android:name=".AddBeerActivity" />
         <activity
             android:name=".SearchBeerFromDatabase"
@@ -29,23 +40,23 @@
         <activity android:name=".PubActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".WelcomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
         <activity
             android:name=".HomePageLover"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MenuPubActivity" />
         <activity
             android:name=".HelpLoverActivity"
-            android:label="Help"></activity>
+            android:label="Help" />
         <activity
             android:name=".InfoActivity"
-            android:label="Info"></activity>
+            android:label="Info" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

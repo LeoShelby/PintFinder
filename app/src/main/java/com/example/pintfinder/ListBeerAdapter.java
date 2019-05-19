@@ -1,11 +1,14 @@
 package com.example.pintfinder;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,10 +22,18 @@ import java.util.List;
 public class ListBeerAdapter extends RecyclerView.Adapter<ListBeerHolder>   {
     private Context context;
     private ArrayList<Beer> beers;
+    private String pubName;
     public ListBeerAdapter(Context context, ArrayList<Beer> beers) {
         this.context = context;
         this.beers = beers;
     }
+
+    public ListBeerAdapter(Context context, ArrayList<Beer> beers, String pubName) {
+        this.context = context;
+        this.beers = beers;
+        this.pubName = pubName;
+    }
+
     @Override
     public int getItemCount() {
         return beers.size();
@@ -61,6 +72,16 @@ public class ListBeerAdapter extends RecyclerView.Adapter<ListBeerHolder>   {
                     intent.putExtra("beerName", beer.getName());
                     context.startActivity(intent);
                 }
+
+                if (listBeerHolder.getActivity() instanceof UpdateMenuActivity)    {
+                    intent = new Intent(context, BeerDescriptionActivity.class);
+                    intent.putExtra("beerName", beer.getName());
+                    intent.putExtra("pub_name", pubName);
+                    intent.putExtra("activity", "UpdateMenuActivity");
+                    context.startActivity(intent);
+                }
+
+
             }
         });
     }

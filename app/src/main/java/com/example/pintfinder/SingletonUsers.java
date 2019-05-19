@@ -11,7 +11,7 @@ public class SingletonUsers {
 
     private static final int SIZE_TASTED_BEERS = 6;
 
-    private String user;
+    private String user = "maria";
 
     private static SingletonUsers instance;
     private ArrayList<String> georgBeers;
@@ -43,8 +43,9 @@ public class SingletonUsers {
 
             for (int i = 0; i < SIZE_TASTED_BEERS; i++)
                 instance.georgBeers.add(instanceBeers.getBeers().get(i).getName());
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 2; i++){
                 instance.mariaPubs.add(instancePubs.getPubs().get(i).getName());
+            }
 
         }
         return instance;
@@ -108,9 +109,22 @@ public class SingletonUsers {
         return newBeers;
     }
 
-    public ArrayList<String> getPubs(){
-        if(user.equals("maria")) return mariaPubs;
-        else return paulPubs;
+    public ArrayList<Pub> getPubs(){
+        ArrayList<Pub> newPubs = new ArrayList<>();
+        SingletonPubs instance = SingletonPubs.Instance();
+
+        if(user.equals("maria")){
+            for(String name: mariaPubs){
+                newPubs.add(instance.findPubByName(name));
+            }
+        }
+        else{
+            for(String name: paulPubs){
+                newPubs.add(instance.findPubByName(name));
+            }
+        }
+
+        return newPubs;
     }
 
     public void setUser(String user){

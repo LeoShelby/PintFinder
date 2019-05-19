@@ -33,4 +33,12 @@ public class Pub {
     public String getDescription(){return description;}
 
     public ArrayList<String> getMenu(){return menu;}
+
+    public void addBeerToMenu(String beerName){
+        this.menu.add(beerName);
+    }
+
+    public void deleteBeerFromMenu(String beerName){
+        this.menu.remove(beerName);
+    }
 }

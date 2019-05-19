@@ -21,6 +21,8 @@ public class ListTastedBeersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_beers);
 
+
+
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         ArrayList<Beer> tastedBeers = SingletonUsers.Instance().getTastedBeers();
@@ -36,5 +38,11 @@ public class ListTastedBeersActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(ListTastedBeersActivity.this,HomePageLover.class);
+        startActivity(i);
     }
 }

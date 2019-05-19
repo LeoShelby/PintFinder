@@ -12,117 +12,57 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class VerticalPubListAdapter extends RecyclerView.Adapter<VerticalPubListAdapter.ViewHolder> {
+public class VerticalPubListAdapter extends ArrayAdapter<Pub> {
 
-    public List<Pub> getmBooks() {
-        return mBooks;
-    }
+    private Context mContext;
+    int mResource;
 
-    // Store a member variable for the contacts
-    private List<Pub> mBooks;
-    private Activity activity;
-
-    private Context context;
-
-    // Define listener member variable
-    private OnItemClickListener listener;
-    // Define the listener interface
-    public interface OnItemClickListener {
-        void onItemClick(View itemView, int position);
-    }
-    // Define the method that allows the parent activity or fragment to define the listener
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        this.listener = listener;
-    }
-
-    // Pass in the contact array into the constructor
-    public VerticalPubListAdapter(List<Pub> books, Activity activity) {
-        mBooks = books;
-        this.activity = activity;
-    }
-
-    @NonNull
-    @Override
-    public VerticalPubListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        Context context = viewGroup.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
-
-        // Inflate the custom layout
-        View bookView = inflater.inflate(R.layout.pub_home_item_layout, viewGroup, false);
-
-        this.context = context;
-        // Return a new holder instance
-        return new ViewHolder(bookView);
-
+    public VerticalPubListAdapter(Context context, int resource, ArrayList<Pub> objects){
+        super(context,resource,objects);
+        mContext = context;
+        mResource = resource;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VerticalPubListAdapter.ViewHolder myViewHolder, int i) {
-        Pub pub = mBooks.get(i);
+    public View getView(int position, View convertView, ViewGroup parent){
 
-        myViewHolder.nameTextView.setText(pub.getName());
-        myViewHolder.addressTextView.setText(pub.getAddress());
-
+        String name = getItem(position).getName();
+        String address = getItem(position).getAddress();
 
 
-        String image = pub.getImage();
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+        convertView = inflater.inflate(mResource, parent, false);
+
+        TextView tvName = convertView.findViewById(R.id.pub_name);
+        TextView tvAddress = convertView.findViewById(R.id.pub_address);
+        ImageView tvImage = convertView.findViewById(R.id.pub_image);
+
+        String image = getItem(position).getImage();
         if(!image.equals("")) {
-            int resourceId = context.getResources().getIdentifier(image, "drawable",context.getPackageName());
-            Picasso.with(activity).load(resourceId).fit().into(myViewHolder.thumbnailImageView);
+            int resourceId = getContext().getResources().getIdentifier(image, "drawable",getContext().getPackageName());
+            Picasso.with(getContext()).load(resourceId).fit().into(tvImage);
         }
 
-    }
 
-    @Override
-    public int getItemCount() {
-        return mBooks.size();
-    }
-
-    // Provide a direct reference to each of the views within a data item
-    // Used to cache the views within the item layout for fast access
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        // Your holder should contain a member variable
-        // for any view that will be set as you render a row
-        public TextView nameTextView,addressTextView;
-        public ImageView thumbnailImageView;
-
-        // We also create a constructor that accepts the entire item row
-        // and does the view lookups to find each subview
-        public ViewHolder(View itemView) {
-            // Stores the itemView in a public final member variable that can be used
-            // to access the context from any ViewHolder instance.
-            super(itemView);
-
-            nameTextView = (TextView) itemView.findViewById(R.id.pub_name);
-            addressTextView = (TextView) itemView.findViewById(R.id.pub_address);
-            //descriptionTextView = (TextView) itemView.findViewById(R.id.book_list_description);
-            thumbnailImageView = (ImageView) itemView.findViewById(R.id.pub_image);
-
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null) {
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION) {
-                            listener.onItemClick(v, position);
-                        }
-                    }
-                }
-            });
-        }
-
-        // Handles the row being being clicked
-
+        tvName.setText(name);
+        tvAddress.setText(address);
+        return convertView;
 
     }
+
+    public void update() {
+        this.notifyDataSetChanged();
+    }
+
 }
 
