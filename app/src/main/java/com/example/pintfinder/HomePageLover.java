@@ -14,9 +14,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.common.api.Status;
@@ -71,6 +73,8 @@ public class HomePageLover extends AppCompatActivity
             View hView = navigationView.getHeaderView(0);
             TextView nav_user = (TextView) hView.findViewById(R.id.user_name);
             nav_user.setText("Anita Smith");
+            ImageView user_pic = (ImageView) hView.findViewById(R.id.user_pic);
+            user_pic.setImageDrawable(getResources().getDrawable(R.drawable.anita));
         }
     }
 
@@ -82,14 +86,15 @@ public class HomePageLover extends AppCompatActivity
                 getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
 
         // Specify the types of place data to return.
-        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG));
 
         // Set up a PlaceSelectionListener to handle the response.
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
                 // TODO: Get info about the selected place.
-                //Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
+                //Log.e("AEE", "Place: " + place.getLatLng() + ", " + place.getId());
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), 15.0f));
             }
 
             @Override

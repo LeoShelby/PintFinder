@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class HomePageOwner extends AppCompatActivity
@@ -48,6 +49,9 @@ public class HomePageOwner extends AppCompatActivity
             View hView = navigationView.getHeaderView(0);
             TextView nav_user = (TextView) hView.findViewById(R.id.user_name);
             nav_user.setText("Paul West");
+            ImageView user_pic = (ImageView) hView.findViewById(R.id.user_pic);
+            user_pic.setImageDrawable(getResources().getDrawable(R.drawable.paul));
+
         }
     }
 

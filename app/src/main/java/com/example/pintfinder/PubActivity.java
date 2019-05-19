@@ -53,7 +53,15 @@ public class PubActivity extends AppCompatActivity {
         Button deleteButton = findViewById(R.id.delete_pub_button);
 
         if(activity == null) {
-            deleteButton.setVisibility(View.GONE);
+            deleteButton.setText("Book the Pub");
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(PubActivity.this, BookPubActivity.class);
+                    intent.putExtra("pub_name", title);
+                    startActivity(intent);
+                }
+            });
 
             menuButton.setOnClickListener(new View.OnClickListener() {
                 @Override
