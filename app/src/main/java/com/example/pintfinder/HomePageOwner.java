@@ -99,7 +99,8 @@ public class HomePageOwner extends AppCompatActivity
         } else if (id == R.id.nav_add_offer) {
 
         } else if (id == R.id.nav_help_lover) {
-
+            Intent intent = new Intent(HomePageOwner.this, HelpLoverActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_info_lover) {
             Intent intent = new Intent(HomePageOwner.this, InfoActivity.class);
@@ -108,8 +109,11 @@ public class HomePageOwner extends AppCompatActivity
         } else if (id == R.id.nav_logout_lover) {
             Intent intent = new Intent(HomePageOwner.this, WelcomeActivity.class);
             startActivity(intent);
-        }
 
+        } else if (id == R.id.nav_profile_lover) {
+            Intent intent = new Intent(HomePageOwner.this, ProfileActivity.class);
+            startActivity(intent);
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

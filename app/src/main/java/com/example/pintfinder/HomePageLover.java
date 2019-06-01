@@ -221,6 +221,10 @@ public class HomePageLover extends AppCompatActivity
         } else if (id == R.id.nav_logout_lover) {
             Intent intent = new Intent(HomePageLover.this, WelcomeActivity.class);
             startActivity(intent);
+
+        } else if (id == R.id.nav_profile_lover) {
+            Intent intent = new Intent(HomePageLover.this, ProfileActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

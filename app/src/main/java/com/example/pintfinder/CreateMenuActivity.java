@@ -50,7 +50,7 @@ public class CreateMenuActivity extends AppCompatActivity {
                 menuCompleted.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(CreateMenuActivity.this, HomePageOwner.class);
+                        Intent intent = new Intent(CreateMenuActivity.this, CreateHoursActivity.class);
                         startActivity(intent);
                     }
                 });

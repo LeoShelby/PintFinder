@@ -9,12 +9,25 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon_app"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BookPubActivity"></activity>
+        <activity
+            android:name=".CreateHoursActivity"
+            android:label="Opening Hours">
+        </activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:label="Profile"></activity>
+        <activity android:name=".BookPubActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".UpdateMenuActivity"
             android:label="Pub Menu" />
@@ -27,7 +40,7 @@
         <activity
             android:name=".HomePageOwner"
             android:label="@string/title_activity_home_page_owner"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".BeerDescriptionActivity" />
         <activity android:name=".SignUpActivity" />
         <activity
@@ -42,16 +55,13 @@
         <activity android:name=".PubActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".WelcomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".HomePageLover"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
         <activity
             android:name=".MenuPubActivity"
             android:label="Pub Menu" />

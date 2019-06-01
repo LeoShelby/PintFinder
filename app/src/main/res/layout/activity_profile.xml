@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFC107">
+
+
+
+
+    <ImageView
+        android:id="@+id/user_pic"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:clickable="true"/>
+
+    <TextView
+        android:id="@+id/usernameLabel"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
+        android:text="USERNAME"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="---"/>
+
+    <TextView
+        android:id="@+id/emailLabel"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
+        android:text="EMAIL"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="---"/>
+
+    <TextView
+        android:id="@+id/vatLabel"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
+        android:text="VAT NUMBER"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/vatNumber"
+        android:layout_width="312dp"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="---"/>
+
+
+    <Button
+        android:id="@+id/log_out_profile"
+        android:layout_width="312dp"
+        android:layout_height="53dp"
+        android:background="@drawable/btn_rounded"
+        android:text="Log Out"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:layout_gravity="center"/>
+
+</LinearLayout>
