@@ -1,5 +1,7 @@
 package com.example.pintfinder;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,9 +22,24 @@ public class CreateHoursActivity extends AppCompatActivity {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getBaseContext(), "The Pub has been successfully created!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(CreateHoursActivity.this, HomePageOwner.class);
-                startActivity(intent);
+                AlertDialog.Builder builderr = new AlertDialog.Builder(CreateHoursActivity.this);
+                builderr.setTitle("Confirm Your Action") //
+                        .setMessage("Do you really want to create the Pub?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Toast.makeText(getBaseContext(), "The Pub has been successfully created!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(CreateHoursActivity.this, HomePageOwner.class);
+                                startActivity(intent);
+                                dialog.dismiss();
+                            }
+                        }) //
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // TODO
+                                dialog.dismiss();
+                            }
+                        });
+                builderr.show();
             }
         });
 
@@ -49,6 +66,7 @@ public class CreateHoursActivity extends AppCompatActivity {
         final Spinner spinner7_1 = (Spinner) findViewById(R.id.spinner7_1);
         final Spinner spinner7_2 = (Spinner) findViewById(R.id.spinner7_2);
         final Spinner spinner7_3 = (Spinner) findViewById(R.id.spinner7_3);
+
 
         spinner1_1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {

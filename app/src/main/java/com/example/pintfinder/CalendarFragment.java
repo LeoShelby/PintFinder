@@ -10,9 +10,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.CardView;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -53,9 +55,14 @@ public class CalendarFragment extends Fragment {
     private TextView textMonth;
     private SimpleDateFormat sdf,sdff;
 
+    public String pubName;
+
     private ArrayList<String> bookings = new ArrayList<>();
     //private HashMap<String, ArrayList<Booking>> bookList = new HashMap<>();
     private CalendarAdapter adapter;
+
+    public String date;
+    public int requested_spots;
 
     public CalendarFragment() {
         // Required empty public constructor
@@ -75,6 +82,9 @@ public class CalendarFragment extends Fragment {
 
         textMonth = (TextView) rootView.findViewById(R.id.calendar_month);
 
+
+        final String pub = getArguments().getString("pub_name", "");
+
         sdf = new SimpleDateFormat(); // creo l'oggetto
         sdf.applyPattern("MMMM yyyy");
 
@@ -84,12 +94,17 @@ public class CalendarFragment extends Fragment {
         adapter = new CalendarAdapter(getActivity(),bookings);
         listViewBooking.setAdapter(adapter);
 
+        final CardView carta = (CardView) rootView.findViewById(R.id.carta);
 
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
-        setUpBookings(calendar.get(Calendar.DAY_OF_WEEK));
+        int d = calendar.get(Calendar.DAY_OF_WEEK);
 
-
-        final CardView carta = (CardView) rootView.findViewById(R.id.carta);
+        //di default ogni pub è chiuso di domenica e di mercoledì
+        if(d == 1 || d == 4){
+            listViewBooking.setVisibility(View.GONE);
+            carta.setVisibility(View.VISIBLE);
+        }
+        else setUpBookings(d);
 
         textMonth.setText(sdf.format(Calendar.getInstance().getTime()));
         calendarView.setListener(new CompactCalendarView.CompactCalendarViewListener() {
@@ -99,7 +114,7 @@ public class CalendarFragment extends Fragment {
                 List<Event> events = calendarView.getEvents(dateClicked);
                 Calendar c = Calendar.getInstance();
                 c.setTime(dateClicked);
-                String until = c.get(Calendar.YEAR) + "-" +c.get(Calendar.MONTH)  +"-"+ c.get(Calendar.DATE);
+                date = c.get(Calendar.YEAR) + "-" +c.get(Calendar.MONTH)  +"-"+ c.get(Calendar.DATE);
 
                 //se è domenica o lunedì fai finta che è chiuso
 
@@ -128,7 +143,12 @@ public class CalendarFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getContext());
+                String booking = bookings.get(position);
+                final int numSpots = Integer.parseInt(booking.split(":")[2].trim());
+
+                final String hour = booking.split(",")[0].trim();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 TextView title = new TextView(getContext());
                 title.setText("How many people?");
                 title.setPadding(10, 10, 10, 10);
@@ -138,27 +158,52 @@ public class CalendarFragment extends Fragment {
                 builder.setCustomTitle(title);
 
                 final EditText input = new EditText(getContext());
+                input.setInputType(InputType.TYPE_CLASS_NUMBER);
+
+
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //m_Text = input.getText().toString();
-                        android.app.AlertDialog.Builder builderr = new AlertDialog.Builder(getContext());
-                        builderr.setTitle("") //
-                                .setMessage("Do you really want to book this Pub?") //
-                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        Toast.makeText(getContext(), "The Pub has been successfully booked!", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getActivity(), HomePageLover.class);
-                                        startActivity(intent);
-                                    }
-                                }) //
-                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        // TODO
-                                        dialog.dismiss();
-                                    }
-                                });
-                        builderr.show();
+
+                        int req = 0;
+
+                        try{
+                            req = Integer.parseInt(input.getText().toString().trim());
+                            requested_spots = req;
+                        }
+                        catch (Exception e){
+                            Snackbar mySnackbar = Snackbar.make(getView(), "You must insert a number", Snackbar.LENGTH_SHORT);
+                            mySnackbar.show();
+                            return;
+                        }
+
+                        if(req > numSpots){
+                            Snackbar mySnackbar = Snackbar.make(getView(), "Not enough spots available", Snackbar.LENGTH_SHORT);
+                            mySnackbar.show();
+                        }
+
+
+                        else {
+                            AlertDialog.Builder builderr = new AlertDialog.Builder(getContext());
+                            builderr.setTitle("") //
+                                    .setMessage("Do you really want to book this Pub?") //
+                                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            Booking b = new Booking(pub,requested_spots,date, hour);
+                                            SingletonUsers.Instance().addBooking(b);
+                                            Toast.makeText(getContext(), "The Pub has been successfully booked!", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(getContext(), HomePageLover.class);
+                                            startActivity(intent);
+                                        }
+                                    }) //
+                                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            // TODO
+                                            dialog.dismiss();
+                                        }
+                                    });
+                            builderr.show();
+                        }
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

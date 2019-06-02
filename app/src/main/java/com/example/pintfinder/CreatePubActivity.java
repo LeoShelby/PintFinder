@@ -16,8 +16,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -92,6 +95,29 @@ public class CreatePubActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+        final EditText t = (EditText) findViewById(R.id.edit);
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+
+                if(selectedItem.equals("Other"))
+                {
+                    t.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    t.setVisibility(View.INVISIBLE);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 
 
@@ -130,5 +156,26 @@ public class CreatePubActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builderr = new AlertDialog.Builder(CreatePubActivity.this);
+        builderr.setTitle("Confirm Your Action") //
+                .setMessage("Do you really want to exit the creation?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent intent = new Intent(CreatePubActivity.this, HomePageOwner.class);
+                        startActivity(intent);
+                        dialog.dismiss();
+                    }
+                }) //
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // TODO
+                        dialog.dismiss();
+                    }
+                });
+        builderr.show();
     }
 }

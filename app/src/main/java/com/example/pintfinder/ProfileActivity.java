@@ -57,6 +57,7 @@ public class ProfileActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SingletonUsers.Instance().setUser("");
                 Intent intent = new Intent(ProfileActivity.this, WelcomeActivity.class);
                 startActivity(intent);
             }

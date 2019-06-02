@@ -11,7 +11,7 @@ public class SingletonUsers {
 
     private static final int SIZE_TASTED_BEERS = 6;
 
-    private String user = "maria";
+    private String user = "";
 
     private static SingletonUsers instance;
     private ArrayList<String> georgBeers;
@@ -23,6 +23,8 @@ public class SingletonUsers {
     private ArrayList<String> georgBookedPubs;
     private ArrayList<String> anitaBookedPubs;
 
+    private ArrayList<Booking> georgBookings;
+    private ArrayList<Booking> anitaBookings;
 
 
     //no outer class can initialize this class's object
@@ -45,6 +47,9 @@ public class SingletonUsers {
             instance.paulPubs = new ArrayList<String>();
             instance.georgBookedPubs = new ArrayList<String>();
             instance.anitaBookedPubs = new ArrayList<String>();
+            instance.georgBookings = new ArrayList<Booking>();
+            instance.anitaBookings = new ArrayList<Booking>();
+
 
 
             for (int i = 0; i < SIZE_TASTED_BEERS; i++)
@@ -55,6 +60,9 @@ public class SingletonUsers {
             for (int i = 0; i < 3; i++){
                 instance.georgBookedPubs.add(instancePubs.getPubs().get(i).getName());
             }
+
+            instance.georgBookings.add(new Booking("The Auld Dubliner",3,"2019-06-15","21:30"));
+            instance.georgBookings.add(new Booking("Mulligan's",5,"2019-06-23","20:00"));
 
         }
         return instance;
@@ -81,6 +89,15 @@ public class SingletonUsers {
         else paulPubs.remove(pub);
     }
 
+    public void addBooking(Booking booking){
+        if(user.equals("georg")) georgBookings.add(booking);
+        else anitaBookings.add(booking);
+    }
+
+    public void deleteBooking(Booking booking){
+        if(user.equals("georg")) georgBookings.remove(booking);
+        else anitaBookings.remove(booking);
+    }
 
 
     public ArrayList<Beer> showOnlyNonTastedBeers()    {
@@ -160,6 +177,11 @@ public class SingletonUsers {
 
     public String getUser(){
         return  user;
+    }
+
+    public ArrayList<Booking> getBookings(){
+        if(user.equals("georg")) return georgBookings;
+        else return anitaBookings;
     }
 
 }

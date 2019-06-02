@@ -77,6 +77,7 @@ import java.util.ArrayList;
 
                         final EditText input = new EditText(context);
 
+                        input.setInputType(InputType.TYPE_CLASS_NUMBER);
 
                         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override

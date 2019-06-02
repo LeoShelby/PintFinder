@@ -1,7 +1,8 @@
 package com.example.pintfinder;
 
 import android.Manifest;
-import android.app.ProgressDialog;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -14,7 +15,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -168,6 +168,28 @@ public class HomePageLover extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
+        AlertDialog.Builder builderr = new AlertDialog.Builder(HomePageLover.this);
+        builderr.setTitle("Confirm Your Action") //
+                .setMessage("Do you really want to exit the application?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                        if (drawer.isDrawerOpen(GravityCompat.START)) {
+                            drawer.closeDrawer(GravityCompat.START);
+                        } else {
+                            finishAffinity();
+                        }
+                    }
+                }) //
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // TODO
+                        dialog.dismiss();
+                    }
+                });
+        builderr.show();
+
+        /*
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -175,6 +197,7 @@ public class HomePageLover extends AppCompatActivity
             super.onBackPressed();
             finishAffinity();
         }
+        */
     }
 
     @Override
@@ -205,8 +228,9 @@ public class HomePageLover extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home_lover) {
-            // Handle the camera action
+        if (id == R.id.nav_booking_lover) {
+            Intent intent = new Intent(HomePageLover.this, ListBookingsActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_tasted_lover) {
             Intent intent = new Intent(HomePageLover.this, ListTastedBeersActivity.class);
             startActivity(intent);
@@ -219,6 +243,7 @@ public class HomePageLover extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_logout_lover) {
+            SingletonUsers.Instance().setUser("");
             Intent intent = new Intent(HomePageLover.this, WelcomeActivity.class);
             startActivity(intent);
 

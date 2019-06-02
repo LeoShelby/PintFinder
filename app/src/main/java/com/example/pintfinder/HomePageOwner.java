@@ -1,5 +1,7 @@
 package com.example.pintfinder;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -57,13 +59,26 @@ public class HomePageOwner extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-            finishAffinity();
-        }
+        AlertDialog.Builder builderr = new AlertDialog.Builder(HomePageOwner.this);
+        builderr.setTitle("Confirm Your Action") //
+                .setMessage("Do you really want to exit the application?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                        if (drawer.isDrawerOpen(GravityCompat.START)) {
+                            drawer.closeDrawer(GravityCompat.START);
+                        } else {
+                            finishAffinity();
+                        }
+                    }
+                }) //
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // TODO
+                        dialog.dismiss();
+                    }
+                });
+        builderr.show();
     }
 
     @Override
@@ -107,6 +122,7 @@ public class HomePageOwner extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_logout_lover) {
+            SingletonUsers.Instance().setUser("");
             Intent intent = new Intent(HomePageOwner.this, WelcomeActivity.class);
             startActivity(intent);
 
@@ -119,3 +135,6 @@ public class HomePageOwner extends AppCompatActivity
         return true;
     }
 }
+
+
+
