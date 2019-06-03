@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class UpdateMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_beers);
-
+        Log.e("on","ZIIIII");
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -58,6 +59,8 @@ public class UpdateMenuActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent i = new Intent(UpdateMenuActivity.this,PubActivity.class);
+
+        Log.e("iN","CE SROO");
 
         Pub pub = SingletonPubs.Instance().findPubByName(name);
         i.putExtra("pub_name",name);

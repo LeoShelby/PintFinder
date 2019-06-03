@@ -112,13 +112,21 @@ public class CreateMenuActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
         Intent i = getIntent();
-        String pubName = i.getStringExtra("pub_name");
-        SingletonUsers.Instance().deletePub(pubName);
-        //poi rimuovi il pub dal sistema
-        Pub pub = SingletonPubs.Instance().findPubByName(pubName);
-        SingletonPubs.Instance().deletePub(pub);
+        String activity = i.getStringExtra("activity");
+        //rimuovi il pub solamente se il menu lo stavi creando per la prima volta
+        //perchè significa che sei tornato indietro perchè volevi aggiustare qualcosa nella creazione del pub
+        //se invece stai solo facendo l'update del menu e torni indietro, non vuoi che il pub venga cancellato!
+        if(activity.equals("CreatePubActivity")) {
+            String pubName = i.getStringExtra("pub_name");
+            SingletonUsers.Instance().deletePub(pubName);
+            //poi rimuovi il pub dal sistema
+            Pub pub = SingletonPubs.Instance().findPubByName(pubName);
+            SingletonPubs.Instance().deletePub(pub);
+        }
         super.onBackPressed();
+
     }
 }
 
