@@ -109,9 +109,7 @@ public class HomePageOwner extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home_lover) {
-            // Handle the camera action
-        } else if (id == R.id.nav_add_offer) {
+        if (id == R.id.nav_add_offer) {
 
         } else if (id == R.id.nav_help_lover) {
             Intent intent = new Intent(HomePageOwner.this, HelpLoverActivity.class);

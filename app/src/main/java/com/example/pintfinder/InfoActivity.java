@@ -15,6 +15,11 @@ public class InfoActivity extends AppCompatActivity {
                 "The project was developed by:\n" +
                 "- Alessandro Lo Presti\n" +
                 "- Leonardo Di Paolantonio\n" +
-                "- Valerio Longo\n");
+                "- Valerio Longo\n\n" +
+                "PintFinder is designed for the need of people to have an easy way for finding the best Pub for them in a Beer-Centered way:\n" +
+                "the beer menu offered by the pub is more important than the pub design, the food...\n" +
+                "On the other side PintFinder allows pub owners to manage their pubs.\n\n\n" +
+                "The code is open source, you can find it on GitHub:\n" +
+                "github.com/LeoShelby/PintFinder");
     }
 }
