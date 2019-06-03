@@ -49,20 +49,35 @@
                 app:layout_constraintStart_toEndOf="@+id/image"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/price"
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:gravity="left"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/image" >
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
                 android:layout_marginBottom="8dp"
                 android:gravity="top"
                 android:padding="1dp"
-                android:textAlignment="center"
                 android:textColor="#6F6F6F"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/image" />
+               />
+
+                <ImageView
+                    android:layout_marginBottom="20dp"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="40dp"
+                    android:src="@drawable/ic_check"/>
+
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/thumbImage"
