@@ -14,16 +14,19 @@
         android:roundIcon="@drawable/icon_app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ListBookingsActivity"
-            android:label="Reservations">
-        </activity>
+        <activity android:name=".AddOfferActivity"></activity>
+        <activity android:name=".OfferActivity" />
+        <activity android:name=".ListOffersActivity" />
+        <activity
+            android:name=".ListBookingsActivity"
+            android:label="Reservations" />
         <activity
             android:name=".CreateHoursActivity"
-            android:label="Opening Hours"></activity>
+            android:label="Opening Hours" />
         <activity
             android:name=".ProfileActivity"
             android:label="Profile" />
-        <activity android:name=".BookPubActivity"></activity>
+        <activity android:name=".BookPubActivity" />
         <activity
             android:name=".UpdateMenuActivity"
             android:label="Pub Menu" />
@@ -36,7 +39,7 @@
         <activity
             android:name=".HomePageOwner"
             android:label="@string/title_activity_home_page_owner"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".BeerDescriptionActivity" />
         <activity android:name=".SignUpActivity" />
         <activity
@@ -60,9 +63,7 @@
         <activity
             android:name=".HomePageLover"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MenuPubActivity"
             android:label="Pub Menu" />

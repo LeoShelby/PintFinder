@@ -85,7 +85,7 @@ public class CreatePubActivity extends AppCompatActivity {
                     builder.show();
                 }
                 else {
-                    Pub newPub = new Pub(name,address,"created_pub",description,new ArrayList<String>());
+                    Pub newPub = new Pub(name,address,"created_pub",description,new ArrayList<String>(), new ArrayList<Offer>());
                     SingletonPubs.Instance().addPub(newPub);
                     SingletonUsers.Instance().addPub(name);
                     Intent intent = new Intent(CreatePubActivity.this, CreateMenuActivity.class);

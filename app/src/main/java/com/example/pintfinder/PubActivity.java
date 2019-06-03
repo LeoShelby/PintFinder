@@ -39,6 +39,23 @@ public class PubActivity extends AppCompatActivity {
         TextView tAddress = findViewById(R.id.pub_address);
         TextView tDescription = findViewById(R.id.pub_description);
         ImageView tImage = findViewById(R.id.pub_image);
+        TextView tOffers = findViewById(R.id.pub_offers);
+
+        ArrayList<Offer> offers = new ArrayList<>();
+        ArrayList<Pub> pubs = SingletonPubs.Instance().getPubs();
+        for (int j = 0; j < pubs.size(); j++)   {
+            if (pubs.get(j).getName().equals(title))   {
+                offers = pubs.get(j).getOffers();
+            }
+        }
+
+        String all_offers = "";
+        for (int x = 0; x < offers.size(); x++) {
+            Offer o = offers.get(x);
+            all_offers += "-" + Integer.toString(x+1) + " " + o.getName() + ": " + o.getDescription() + "  until " + o.getExpireTime() + "\n";
+        }
+
+        tOffers.setText(all_offers);
 
 
         tName.setText(title);

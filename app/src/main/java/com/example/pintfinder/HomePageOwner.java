@@ -110,6 +110,8 @@ public class HomePageOwner extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_add_offer) {
+            Intent intent = new Intent(HomePageOwner.this, ListOffersActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_help_lover) {
             Intent intent = new Intent(HomePageOwner.this, HelpLoverActivity.class);

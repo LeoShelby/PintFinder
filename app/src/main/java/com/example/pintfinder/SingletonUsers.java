@@ -153,6 +153,18 @@ public class SingletonUsers {
         return newPubs;
     }
 
+    public Pub getPubByName(String name)    {
+        ArrayList<Pub> pubs = SingletonPubs.Instance().getPubs();
+        for (Pub p: pubs)   {
+                if (p.getName().equals(name))   {
+                    System.out.println(p.getName());
+                    System.out.println(p.offers);
+                    return p;
+                }
+            }
+        return null;
+    }
+
     public void setUser(String user){
         this.user = user;
     }
@@ -183,6 +195,16 @@ public class SingletonUsers {
         if(user.equals("georg")) return georgBookings;
         else return anitaBookings;
     }
+
+    public ArrayList<String> getPubNames()   {
+        if (user.equals("maria"))   {
+            return mariaPubs;
+        }
+        else    {
+            return paulPubs;
+        }
+    }
+
 
 }
 
