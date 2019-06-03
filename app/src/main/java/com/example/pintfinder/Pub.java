@@ -9,15 +9,17 @@ public class Pub {
     String description;
     ArrayList<String> menu;
     ArrayList<Offer> offers;
+    String note;
 
 
-    public Pub(String name, String address, String image, String description, ArrayList<String> menu, ArrayList<Offer> offers) {
+    public Pub(String name, String address, String image, String description, ArrayList<String> menu, ArrayList<Offer> offers, String note) {
         this.name = name;
         this.address = address;
         this.image = image;
         this.description = description;
         this.menu = menu;
         this.offers = offers;
+        this.note = note;
     }
 
     public String getName() {
@@ -33,6 +35,8 @@ public class Pub {
     }
 
     public String getDescription(){return description;}
+
+    public String getNote(){return  note;}
 
     public ArrayList<String> getMenu(){return menu;}
     public void addBeerToMenu(String beerName){
@@ -56,5 +60,9 @@ public class Pub {
         for (int i = 0; i < offers.size(); i++) {
             System.out.println(offers.get(i).getName());
         }
+    }
+
+    public void setNote(String note){
+        this.note = note;
     }
 }
