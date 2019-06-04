@@ -1,13 +1,18 @@
 package com.example.pintfinder;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +27,8 @@ public class PubActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pub);
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         //setupUI();
 
@@ -50,12 +57,14 @@ public class PubActivity extends AppCompatActivity {
         }
 
         String all_offers = "";
-        for (int x = 0; x < offers.size(); x++) {
+        int size = offers.size();
+        for (int x = 0; x < size; x++) {
             Offer o = offers.get(x);
-            all_offers += "-" + Integer.toString(x+1) + " " + o.getName() + ": " + o.getDescription() + "  until " + o.getExpireTime() + "\n";
+            all_offers += Integer.toString(x+1) + ") " + o.getName() + ": " + o.getDescription() + "  until " + o.getExpireTime();
+            if(x != size-1) all_offers += "\n\n";
         }
 
-        tOffers.setText(all_offers);
+        if(!all_offers.equals(""))tOffers.setText(all_offers);
 
 
         tName.setText(title);
@@ -69,7 +78,52 @@ public class PubActivity extends AppCompatActivity {
         Button menuButton = findViewById(R.id.menu_button);
         Button deleteButton = findViewById(R.id.delete_pub_button);
 
+        CardView cardOffer = findViewById(R.id.card_offer);
+        CardView cardNote = findViewById(R.id.card_note);
+
+        final TextView pubNote = findViewById(R.id.pub_note);
+        String note = SingletonPubs.Instance().findPubByName(title).getNote();
+        if(!note.equals("")) pubNote.setText(note);
+
+        pubNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(PubActivity.this);
+                builder.setTitle("Add your note");
+
+                final EditText input = new EditText(PubActivity.this);
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
+                builder.setView(input);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String text = input.getText().toString();
+                        SingletonPubs.Instance().findPubByName(title).setNote(text);
+                        pubNote.setText(text);
+
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.show();
+
+                //Dialog d = builder.setView(input).create();
+                //d.show();
+                //d.getWindow().setLayout(1000,1000);
+            }
+        });
+
+
+
+        //if you are a pubLover
         if(activity == null) {
+            cardNote.setVisibility(View.VISIBLE);
+            cardOffer.setVisibility(View.VISIBLE);
+
             deleteButton.setText("Book the Pub");
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -89,7 +143,11 @@ public class PubActivity extends AppCompatActivity {
                 }
             });
         }
+        //if you are a pubOwner
         else if (activity.equals("ListPubHomeFragment") || activity.equals("UpdateMenuActivity")) {
+            cardNote.setVisibility(View.GONE);
+            cardOffer.setVisibility(View.GONE);
+
             menuButton.setText("Update Menu");
             menuButton.setOnClickListener(new View.OnClickListener() {
                 @Override

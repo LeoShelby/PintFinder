@@ -35,7 +35,7 @@ public class SingletonPubs {
                     add(new Offer("The Auld Dubliner", "Thursday 50% discount", "Every Thursday 50% discount on all beers in the menu where no other discount has been applied", "23/06/2019"));
                     add(new Offer("The Auld Dubliner", "Belgian Beer Festival", "Every day 10% discount on all Belgian beers in the menu", "31/08/2019"));
                 }
-            }));
+            }, "Very good Pub"));
 
             instance.addPub(new Pub("The Brazenhead", "Via Livorno 2, Roma", "the_brazen_head", "The Brazen Head claims to be Rome's oldest pub and to have started pouring beers since 1198, despite the building being from 1750. The kitchen offers typical Irish dishes (Irish stew, stew with the Guinness, etc.) and offers live music every night.", new ArrayList<String>() {
                 {
@@ -49,7 +49,7 @@ public class SingletonPubs {
                 {
                     add(new Offer("The Brazenhead", "Friday night taste", "Every Friday 20% discount on all beers in the menu", "30/6/2019"));
                 }
-            }));
+            }, "Very bad Pub"));
 
 
 
@@ -59,7 +59,7 @@ public class SingletonPubs {
                     add("Foster's Lager");
                     add("Magners");
                 }
-            }, new ArrayList<Offer>()));
+            }, new ArrayList<Offer>(), "Neutral Pub"));
 
             instance.addPub(new Pub("The Long Hall", "Via Catania 5, Roma", "the_long_hall","Located a stone's throw from Piazza Bologna, The Long Hall is one of the few traditional pubs on Via Catania, lined with modern pubs, clubs and bars. The pub is furnished in classic old Irish pub style and is characterized by its simplicity. Excellent choice to enjoy a pint in peace.", new ArrayList<String>() {
                 {
@@ -67,7 +67,7 @@ public class SingletonPubs {
                     add("Kilkenny");
                     add("Münchner Märzen");
                 }
-            }, new ArrayList<Offer>()));
+            }, new ArrayList<Offer>(), ""));
 
         }
         return instance;
