@@ -69,6 +69,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
+                <!--
                 <ImageView
                     android:id="@+id/check"
                     android:layout_marginBottom="20dp"
@@ -77,6 +78,18 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="0dp"
                     android:src="@drawable/tasted_logo"/>
+                -->
+
+                <Button
+                    android:id="@+id/check"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/button_tasted"
+                    android:text="TASTED"
+                    android:textSize="10dp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 

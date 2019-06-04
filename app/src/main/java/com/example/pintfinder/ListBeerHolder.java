@@ -3,9 +3,11 @@ package com.example.pintfinder;
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,7 +19,7 @@ public class ListBeerHolder extends RecyclerView.ViewHolder {
     private TextView name, price; // ricordare che price verrà usato per inserire anche l'address del pub nella schermata del PubOwner
     private ImageView image;
     private ImageView thumb;
-    private ImageView check;
+    private Button check;
 
     public ListBeerHolder(View itemView) {
         super(itemView);
@@ -41,6 +43,7 @@ public class ListBeerHolder extends RecyclerView.ViewHolder {
     }
 
     public void setDetails(Beer beer) {
+        final Beer birrina = beer;
         if (getActivity() != null)  {
             name.setText(beer.getName());
             image.setImageResource(beer.getImage());
@@ -50,6 +53,16 @@ public class ListBeerHolder extends RecyclerView.ViewHolder {
                 check.setVisibility(View.GONE);
                 if(SingletonUsers.Instance().getTastedBeers().contains(beer)) {
                     check.setVisibility(View.VISIBLE);
+                    check.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(getActivity(), AddBeerActivity.class);
+                            intent.putExtra("beerName", birrina.getName());
+                            intent.putExtra("activity", "ListTastedBeersActivity");
+                            intent.putExtra("help","tasted");
+                            getActivity().startActivity(intent);
+                        }
+                    });
                 }
 
             }

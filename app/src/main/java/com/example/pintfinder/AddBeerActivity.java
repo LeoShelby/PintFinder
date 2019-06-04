@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -158,6 +159,11 @@ public class AddBeerActivity extends AppCompatActivity {
                 }
             });
 
+            //se è diversa da null allora è uguale a "tasted", cioè sto nella tested beer da dentro a un menu
+            if(extras.getString("help") != null){
+                Log.e("HAHH","AJAJ");
+                deleteButton.setVisibility(View.GONE);
+            }
         }
 
     }
