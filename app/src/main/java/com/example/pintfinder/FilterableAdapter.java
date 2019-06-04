@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -175,7 +176,7 @@ import java.util.ArrayList;
             private ImageView image;
             private TextView name;
             private TextView price;
-            private ImageView check;
+            private Button check;
             public ViewHolder(View view) {
                 super(view);
 
