@@ -8,11 +8,13 @@ public class Beer {
     private int thumb;
     private String note;
     private String type;
+    private String rate;
     private String nationality;
+    private String brewery;
 
     public Beer()   {}
 
-    public Beer(String name, int image, String description, String price, int thumb, String note, String type, String nationality) {
+    public Beer(String name, int image, String description, String price, int thumb, String note, String type, String rate, String nationality, String brewery) {
         this.name = name;
         this.image = image;
         this.description = description;
@@ -20,7 +22,25 @@ public class Beer {
         this.thumb = thumb;
         this.note = note;
         this.type = type;
+        this.rate = rate;
         this.nationality = nationality;
+        this.brewery = brewery;
+    }
+
+    public String getBrewery() {
+        return brewery;
+    }
+
+    public String getRate() {
+        return rate;
+    }
+
+    public void setRate(String rate) {
+        this.rate = rate;
+    }
+
+    public void setBrewery(String brewery) {
+        this.brewery = brewery;
     }
 
     public String getType() {

@@ -17,6 +17,10 @@ public class BeerDescriptionActivity extends AppCompatActivity {
     private TextView name;
     private TextView price;
     private TextView description;
+    private TextView type;
+    private TextView rate;
+    private TextView brewery;
+    private TextView nationality;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +37,20 @@ public class BeerDescriptionActivity extends AppCompatActivity {
         price = findViewById(R.id.priceBeer);
         description = findViewById(R.id.description);
 
+        type = findViewById(R.id.type);
+        rate = findViewById(R.id.rate);
+        brewery = findViewById(R.id.brewery);
+        nationality = findViewById(R.id.nationality);
+
         image.setImageResource(beer.getImage());
         name.setText(beer.getName());
         price.setText(beer.getPrice());
         description.setText(beer.getDescription());
+
+        type.setText(beer.getType());
+        rate.setText(beer.getRate());
+        brewery.setText(beer.getBrewery());
+        nationality.setText(beer.getNationality());
 
 
         String activity = extras.getString("activity");

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,7 @@ public class AddBeerActivity extends AppCompatActivity {
     private ImageView image;
     private TextView name;
     private TextView type;
+    private TextView nationality;
     private Button thumbUp;
     private Button thumbDown;
     private ImageView thumbAdded;
@@ -27,6 +29,9 @@ public class AddBeerActivity extends AppCompatActivity {
     private TextView deleteButton;
     private EditText note;
     private TextView savedNote;
+    private TextView brewery;
+    private TextView rate;
+    private CardView cardLeaveAThumb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,18 +52,23 @@ public class AddBeerActivity extends AppCompatActivity {
         deleteButton = findViewById(R.id.addToMyTastedBeer);
         note = findViewById(R.id.note);
         savedNote = findViewById(R.id.savedNote);
-        type = findViewById(R.id.typeBeer);
-
-
-
+        type = findViewById(R.id.type);
+        nationality = findViewById(R.id.nationality);
+        brewery = findViewById(R.id.brewery);
+        rate = findViewById(R.id.rate);
         image.setImageResource(beer.getImage());
         name.setText(beer.getName());
+        cardLeaveAThumb = findViewById(R.id.cardLeaveAThumb);
+
         type.setText(beer.getType());
+        rate.setText(beer.getRate());
+        brewery.setText(beer.getBrewery());
+        nationality.setText(beer.getNationality());
+
 
         String activity = extras.getString("activity");
         if (activity.equals("SearchBeerFromDatabase"))  {
             thumbAdded.setVisibility(View.GONE);
-
             addListenerOnButton();
             addListenerOnButton();
             savedNote.setVisibility(View.GONE);
@@ -110,6 +120,7 @@ public class AddBeerActivity extends AppCompatActivity {
         if (activity.equals("ListTastedBeersActivity")) {
             thumbUp.setVisibility(View.GONE);
             thumbDown.setVisibility(View.GONE);
+            cardLeaveAThumb.setVisibility(View.GONE);
             thumbAdded.setImageResource(beer.getThumb());
             chooseThumb.setText("Selected status:");
             deleteButton.setText("Delete from My Tasted Beer");
