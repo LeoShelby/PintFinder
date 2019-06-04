@@ -17,6 +17,7 @@ public class ListBeerHolder extends RecyclerView.ViewHolder {
     private TextView name, price; // ricordare che price verrà usato per inserire anche l'address del pub nella schermata del PubOwner
     private ImageView image;
     private ImageView thumb;
+    private ImageView check;
 
     public ListBeerHolder(View itemView) {
         super(itemView);
@@ -24,6 +25,7 @@ public class ListBeerHolder extends RecyclerView.ViewHolder {
         image = itemView.findViewById(R.id.image);
         price = itemView.findViewById(R.id.price);
         thumb = itemView.findViewById(R.id.thumbImage);
+        check = itemView.findViewById(R.id.check);
     }
 
 
@@ -45,15 +47,23 @@ public class ListBeerHolder extends RecyclerView.ViewHolder {
             if (getActivity() instanceof MenuPubActivity)   {
                 Log.e("MenuPubActivity", "Siamo in MenuPubActivity");
                 price.setText(beer.getPrice());
+                check.setVisibility(View.GONE);
+                if(SingletonUsers.Instance().getTastedBeers().contains(beer)) {
+                    check.setVisibility(View.VISIBLE);
+                }
+
             }
             if (getActivity() instanceof ListTastedBeersActivity)   {
                 Log.e("ListTastedBeersActivity", "Siamo in ListTastedBeersActivity");
                 thumb.setImageResource(beer.getThumb());
                 price.setVisibility(View.GONE);
+                check.setVisibility(View.GONE);
+
             }
             if (getActivity() instanceof UpdateMenuActivity)   {
                 Log.e("ListTastedBeersActivity", "Siamo in ListTastedBeersActivity");
                 price.setText(beer.getPrice());
+                check.setVisibility(View.GONE);
             }
 
         }

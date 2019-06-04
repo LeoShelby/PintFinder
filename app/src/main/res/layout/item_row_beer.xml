@@ -70,11 +70,13 @@
                     android:textStyle="bold" />
 
                 <ImageView
+                    android:id="@+id/check"
                     android:layout_marginBottom="20dp"
-                    android:layout_width="30dp"
+                    android:layout_marginRight="60dp"
+                    android:layout_width="70dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="40dp"
-                    android:src="@drawable/ic_check"/>
+                    android:layout_marginLeft="0dp"
+                    android:src="@drawable/tasted_logo"/>
 
             </LinearLayout>
 
@@ -90,7 +92,6 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/image"
                 tools:srcCompat="@tools:sample/avatars" />
 
         </android.support.constraint.ConstraintLayout>

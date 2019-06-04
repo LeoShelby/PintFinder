@@ -175,12 +175,15 @@ import java.util.ArrayList;
             private ImageView image;
             private TextView name;
             private TextView price;
+            private ImageView check;
             public ViewHolder(View view) {
                 super(view);
 
                 image = view.findViewById(R.id.image);
                 name = view.findViewById(R.id.name);
                 price = view.findViewById(R.id.price);
+                check = view.findViewById(R.id.check);
+                check.setVisibility(View.GONE);
 
             }
         }
