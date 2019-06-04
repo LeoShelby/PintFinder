@@ -2,6 +2,7 @@ package com.example.pintfinder;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -43,11 +44,20 @@ import java.util.Arrays;
 public class HomePageLover extends AppCompatActivity
         implements OnMapReadyCallback, NavigationView.OnNavigationItemSelectedListener {
 
+    ProgressDialog progressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page_lover);
+
+        progressDialog = new ProgressDialog(HomePageLover.this);
+        progressDialog.setMessage("Loading..."); // Setting Message
+        progressDialog.setTitle("PintFinder"); // Setting Title
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER); // Progress Dialog Style Spinner
+        progressDialog.show(); // Display Progress Dialog
+        progressDialog.setCancelable(false);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -84,6 +94,9 @@ public class HomePageLover extends AppCompatActivity
         // Initialize the AutocompleteSupportFragment.
         AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
                 getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+
+        if (progressDialog != null)
+            progressDialog.dismiss();
 
         // Specify the types of place data to return.
         autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG));

@@ -35,6 +35,7 @@ public class AddOfferActivity extends AppCompatActivity {
             list.add(s);
         }
 
+
         if (!list.get(0).equals("Click here to select a Pub"))
             list.add(0, "Click here to select a Pub");
 
