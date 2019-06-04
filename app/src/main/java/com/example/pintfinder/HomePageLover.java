@@ -269,4 +269,5 @@ public class HomePageLover extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
