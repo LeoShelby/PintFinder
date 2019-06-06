@@ -26,7 +26,7 @@ import java.util.Calendar;
 public class ListPubHomeFragment extends ListFragment {
 
     VerticalPubListAdapter mAdapter;
-    final ArrayList<Pub> mPubs = SingletonUsers.Instance().getPubs();
+    ArrayList<Pub> mPubs = SingletonUsers.Instance().getPubs();
 
     public ListPubHomeFragment() {
         // Required empty public constructor
@@ -39,6 +39,17 @@ public class ListPubHomeFragment extends ListFragment {
 
         //lw = (RecyclerView) rootView.findViewById(R.id.list_pub_vertical);
 
+        //se l'activity non è del pubowner, ma del publover che sta checkando i pub con una certa birra, allora non devi tornare tutti i pub
+        //ma solo i pub con la certa birra
+
+        String activity = getActivity().getClass().getSimpleName();
+        if(activity.equals("CheckPubsActivity")){
+            String beerName = ((CheckPubsActivity)(getActivity())).getBeerName();
+            Log.e("INADN","La bira è: "+beerName);
+            mPubs = SingletonPubs.Instance().getPubWithBeer(beerName);
+            int dio = mPubs.size();
+            Log.e("INADN","size: "+dio);
+        }
 
         mAdapter = new VerticalPubListAdapter(getActivity().getBaseContext(),R.layout.pub_home_item_layout,mPubs);
         setListAdapter(mAdapter);
@@ -76,7 +87,16 @@ public class ListPubHomeFragment extends ListFragment {
                 intent.putExtra("pub_description", pub.getDescription());
                 intent.putExtra("pub_menu", pub.getMenu());
 
-                intent.putExtra("activity", "ListPubHomeFragment");
+
+                //praticamente se l'activity è CheckPubsActivity significa che sei un pubLover
+                //perciò non devi specificare che l'activity è ListPubHomeFragment, perchè quella è l'activity del pubOwner
+                //sennò ti fa vedere il pub come lo vedrebbe il pubOwner e non va bene
+                String activity = getActivity().getClass().getSimpleName();
+                if(activity.equals("CheckPubsActivity")) {
+                    intent.putExtra("activity", "CheckPubsActivity");
+                }
+                else intent.putExtra("activity", "ListPubHomeFragment");
+
 
                 startActivity(intent);
             }

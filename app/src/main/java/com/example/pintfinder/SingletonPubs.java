@@ -1,5 +1,7 @@
 package com.example.pintfinder;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +43,7 @@ public class SingletonPubs {
                 {
                     add("Grimbergen Blonde");
                     add("Heineken");
+                    add("Carlsberg");
                     add("Münchner Märzen");
                     add("Magners");
                     add("Kilkenny");
@@ -58,6 +61,7 @@ public class SingletonPubs {
                     add("Hoegaarden");
                     add("Foster's Lager");
                     add("Magners");
+                    add("Grimbergen Blonde");
                 }
             }, new ArrayList<Offer>(), "Neutral Pub"));
 
@@ -65,6 +69,7 @@ public class SingletonPubs {
                 {
                     add("Wel Scotch");
                     add("Kilkenny");
+                    add("Carlsberg");
                     add("Münchner Märzen");
                 }
             }, new ArrayList<Offer>(), ""));
@@ -138,6 +143,16 @@ public class SingletonPubs {
                 offers.addAll(p.getOffers());
         }
         return offers;
+    }
+
+    public ArrayList<Pub> getPubWithBeer(String beerName){
+        ArrayList<Pub> pubs = SingletonPubs.Instance().getPubs();
+        ArrayList<Pub> result = new ArrayList<>();
+        for(Pub pub: pubs){
+            ArrayList<String> menu = pub.getMenu();
+            if(menu.contains(beerName)) result.add(pub);
+        }
+        return result;
     }
 
 
