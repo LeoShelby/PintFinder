@@ -89,6 +89,9 @@ public class BeerDescriptionActivity extends AppCompatActivity {
                     }
                 });
             }
+            if (activity.equals("AdvancedSearchActivity"))  {
+                price.setVisibility(View.GONE);
+            }
         }
     }
 

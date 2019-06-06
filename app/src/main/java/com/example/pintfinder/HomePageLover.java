@@ -247,6 +247,9 @@ public class HomePageLover extends AppCompatActivity
         } else if (id == R.id.nav_tasted_lover) {
             Intent intent = new Intent(HomePageLover.this, ListTastedBeersActivity.class);
             startActivity(intent);
+        } else if (id == R.id.nav_advanced_search)  {
+            Intent intent = new Intent(HomePageLover.this, AdvancedSearchActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_help_lover) {
             Intent intent = new Intent(HomePageLover.this, HelpLoverActivity.class);
             startActivity(intent);

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.pintfinder">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -14,7 +15,8 @@
         android:roundIcon="@drawable/icon_app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CheckPubsActivity"></activity>
+        <activity android:name=".AdvancedSearchActivity"
+            android:theme="@style/CustomActionBarTheme"></activity>
         <activity android:name=".AddOfferActivity" />
         <activity android:name=".OfferActivity" />
         <activity android:name=".ListOffersActivity" />
