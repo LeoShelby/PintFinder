@@ -1,7 +1,10 @@
 package com.example.pintfinder;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 public class HelpLoverActivity extends AppCompatActivity {
@@ -54,5 +57,26 @@ public class HelpLoverActivity extends AppCompatActivity {
                     "the title and the description of the offer.\n" +
                     "Of course it should be limited in time, so you can add also an expiring date for the offer.");
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        Intent i;
+        String user = SingletonUsers.Instance().getUser();
+        if(user.equals("georg") || user.equals("anita")) i = new Intent(HelpLoverActivity.this, HomePageLover.class);
+        else i = new Intent(HelpLoverActivity.this, HomePageOwner.class);
+
+        startActivity(i);
+        return super.onOptionsItemSelected(item);
     }
 }

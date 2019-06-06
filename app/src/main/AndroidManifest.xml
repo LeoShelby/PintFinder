@@ -15,6 +15,7 @@
         android:roundIcon="@drawable/icon_app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".CheckPubsActivity"></activity>
         <activity android:name=".AdvancedSearchActivity"
             android:theme="@style/CustomActionBarTheme"></activity>
         <activity android:name=".AddOfferActivity" />

@@ -6,6 +6,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -108,12 +109,26 @@ public class AddOfferActivity extends AppCompatActivity {
 
     }
 
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-            getMenuInflater().inflate(R.menu.main, menu);
-            return true;
-        }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        Intent i;
+        String user = SingletonUsers.Instance().getUser();
+        if(user.equals("georg") || user.equals("anita")) i = new Intent(AddOfferActivity.this, HomePageLover.class);
+        else i = new Intent(AddOfferActivity.this, HomePageOwner.class);
+
+        startActivity(i);
+        return super.onOptionsItemSelected(item);
+    }
 
 
 
