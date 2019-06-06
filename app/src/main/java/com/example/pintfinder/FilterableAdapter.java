@@ -161,7 +161,7 @@ public class FilterableAdapter extends RecyclerView.Adapter<FilterableAdapter.Vi
 
                     String charString = charSequence.toString().toLowerCase();
 
-                    if (charString.isEmpty()) {
+                    if (charString.isEmpty() || charString.equals("1,2,3")) {
                         mFilteredList = mArrayList;
                     } else {
 
@@ -255,7 +255,6 @@ public class FilterableAdapter extends RecyclerView.Adapter<FilterableAdapter.Vi
                 check.setVisibility(View.GONE);
 
             }
-
         }
 
 

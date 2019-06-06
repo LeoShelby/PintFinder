@@ -40,7 +40,7 @@ public class AdvancedSearchActivity extends AppCompatActivity {
 
         initViews();
 
-        mArrayList = SingletonUsers.Instance().showOnlyNonTastedBeers();
+        mArrayList = SingletonBeers.Instance().getBeers();
         mAdapter = new FilterableAdapter(this, mArrayList);
         mRecyclerView.setAdapter(mAdapter);
 
@@ -103,6 +103,7 @@ public class AdvancedSearchActivity extends AppCompatActivity {
                     mAdapter.getFilter().filter(text);
 
                 }
+
             }
 
             @Override
@@ -125,6 +126,7 @@ public class AdvancedSearchActivity extends AppCompatActivity {
                     text = changeText(selectionNationality, 3);
                     mAdapter.getFilter().filter(text);
                 }
+
             }
 
             @Override
