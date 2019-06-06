@@ -1,8 +1,10 @@
 package com.example.pintfinder;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -19,19 +21,29 @@ import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Map;
 
-    public class FilterableAdapter extends RecyclerView.Adapter<FilterableAdapter.ViewHolder> implements Filterable {
+import static android.widget.Toast.LENGTH_SHORT;
+import static java.security.AccessController.getContext;
+
+public class FilterableAdapter extends RecyclerView.Adapter<FilterableAdapter.ViewHolder> implements Filterable {
 
         private Context context;
         private ArrayList<Beer> mArrayList;
         private ArrayList<Beer> mFilteredList;
         private String pubName;
 
-        public FilterableAdapter(Context context, ArrayList<Beer> arrayList) {
+    public Context getContext() {
+        return context;
+    }
+
+    public FilterableAdapter(Context context, ArrayList<Beer> arrayList) {
             this.context = context;
             mArrayList = arrayList;
             mFilteredList = arrayList;
@@ -91,7 +103,7 @@ import java.util.ArrayList;
                                             public void onClick(DialogInterface dialog, int id) {
                                                 String price = input.getText().toString();
                                                 SingletonBeers.Instance().setPrice(beer,price);
-                                                Toast.makeText(context, "The beer has been successfully added to the Menu!", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(context, "The beer has been successfully added to the Menu!", LENGTH_SHORT).show();
                                                 SingletonPubs.Instance().addBeerToMenu(pubName,beer);
                                                 mFilteredList.remove(beer);
                                                 notifyDataSetChanged();
@@ -121,6 +133,12 @@ import java.util.ArrayList;
                         //builder.show();
 
                     }
+                    if (context instanceof AdvancedSearchActivity) {
+                        Intent intent = new Intent(context, BeerDescriptionActivity.class);
+                        intent.putExtra("beerName", beer.getName());
+                        intent.putExtra("activity", "AdvancedSearchActivity");
+                        context.startActivity(intent);
+                    }
                 }
             });
 
@@ -141,7 +159,7 @@ import java.util.ArrayList;
                 @Override
                 protected FilterResults performFiltering(CharSequence charSequence) {
 
-                    String charString = charSequence.toString();
+                    String charString = charSequence.toString().toLowerCase();
 
                     if (charString.isEmpty()) {
                         mFilteredList = mArrayList;
@@ -149,10 +167,57 @@ import java.util.ArrayList;
 
                         ArrayList<Beer> filteredList = new ArrayList<>();
 
-                        for (Beer beer : mArrayList) {
+                        if (context instanceof SearchBeerFromDatabase || context instanceof CreateMenuActivity) {
+                            for (Beer beer : mArrayList) {
+                                if (beer.getName().toLowerCase().contains(charString)) {
+                                    filteredList.add(beer);
+                                }
+                            }
+                        }
+                        else    {
 
-                            if (beer.getName().toLowerCase().contains(charString)) {
-                                filteredList.add(beer);
+                            String[] text = charString.split(",");
+                            String name = text[0];
+                            String type = text[1];
+                            String nationality = text[2];
+                            for (Beer beer : mArrayList) {
+                                if (name.equals("1") && type.equals("2") && nationality.equals("3")) // 0 0 0
+                                    filteredList = mArrayList;
+                                if (!name.equals("1") && type.equals("2") && nationality.equals("3"))   {   // 1 0 0
+                                    if (beer.getName().toLowerCase().contains(name)) {
+                                        filteredList.add(beer);
+                                    }
+                                }
+                                if (name.equals("1") && !type.equals("2") && nationality.equals("3"))   { // 0 1 0
+                                    if (beer.getType().toLowerCase().contains(type)) {
+                                        filteredList.add(beer);
+                                    }
+                                }
+                                if (name.equals("1") && type.equals("2") && !nationality.equals("3"))   { // 0 0 1
+                                    if (beer.getNationality().toLowerCase().contains(nationality)) {
+                                        filteredList.add(beer);
+                                    }
+                                }
+                                if (!name.equals("1") && !type.equals("2") && nationality.equals("3"))  {  // 1 1 0
+                                    if (beer.getName().toLowerCase().contains(name) && beer.getType().toLowerCase().contains(type)) {
+                                        filteredList.add(beer);
+                                    }
+                                }
+                                if (!name.equals("1") && type.equals("2") && !nationality.equals("3"))  { // 1 0 1
+                                    if (beer.getName().toLowerCase().contains(name) && beer.getNationality().toLowerCase().contains(nationality)) {
+                                        filteredList.add(beer);
+                                    }
+                                }
+                                if (name.equals("1") && !type.equals("2") && !nationality.equals("3"))  {  // 0 1 1
+                                    if (beer.getType().toLowerCase().contains(type) && beer.getNationality().toLowerCase().contains(nationality)) {
+                                        filteredList.add(beer);
+                                    }
+                                }
+                                if (!name.equals("1") && !type.equals("2") && !nationality.equals("3"))  {  // 1 1 1
+                                    if (beer.getName().toLowerCase().contains(name) && beer.getType().toLowerCase().contains(type) && beer.getNationality().toLowerCase().contains(nationality)) {
+                                        filteredList.add(beer);
+                                    }
+                                }
                             }
                         }
 
@@ -167,6 +232,9 @@ import java.util.ArrayList;
                 @Override
                 protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
                     mFilteredList = (ArrayList<Beer>) filterResults.values;
+                    if (mFilteredList.size() == 0) {
+                        Toast.makeText(getContext(), "No result found. Try again changing the filters.", Toast.LENGTH_LONG).show();
+                    }
                     notifyDataSetChanged();
                 }
             };
@@ -177,9 +245,9 @@ import java.util.ArrayList;
             private TextView name;
             private TextView price;
             private Button check;
+
             public ViewHolder(View view) {
                 super(view);
-
                 image = view.findViewById(R.id.image);
                 name = view.findViewById(R.id.name);
                 price = view.findViewById(R.id.price);
@@ -187,7 +255,11 @@ import java.util.ArrayList;
                 check.setVisibility(View.GONE);
 
             }
+
         }
+
+
+
 
     }
 
