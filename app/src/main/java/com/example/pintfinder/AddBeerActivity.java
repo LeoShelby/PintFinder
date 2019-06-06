@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -33,13 +34,17 @@ public class AddBeerActivity extends AppCompatActivity {
     private TextView rate;
     private CardView cardLeaveAThumb;
 
+    private Button checkNearPubs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_beer);
 
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
         Bundle extras = getIntent().getExtras();
-        String beerName = extras.getString("beerName");
+        final String beerName = extras.getString("beerName");
 
         final Beer beer = SingletonBeers.Instance().findBeerByName(beerName);
 
@@ -60,6 +65,8 @@ public class AddBeerActivity extends AppCompatActivity {
         name.setText(beer.getName());
         cardLeaveAThumb = findViewById(R.id.cardLeaveAThumb);
 
+        checkNearPubs = findViewById(R.id.checkNearPubs);
+
         type.setText(beer.getType());
         rate.setText(beer.getRate());
         brewery.setText(beer.getBrewery());
@@ -68,6 +75,9 @@ public class AddBeerActivity extends AppCompatActivity {
 
         String activity = extras.getString("activity");
         if (activity.equals("SearchBeerFromDatabase"))  {
+
+            checkNearPubs.setVisibility(View.GONE);
+
             thumbAdded.setVisibility(View.GONE);
             addListenerOnButton();
             addListenerOnButton();
@@ -118,6 +128,9 @@ public class AddBeerActivity extends AppCompatActivity {
 
         }
         if (activity.equals("ListTastedBeersActivity")) {
+
+            checkNearPubs.setVisibility(View.VISIBLE);
+
             thumbUp.setVisibility(View.GONE);
             thumbDown.setVisibility(View.GONE);
             cardLeaveAThumb.setVisibility(View.GONE);
@@ -170,10 +183,24 @@ public class AddBeerActivity extends AppCompatActivity {
                 }
             });
 
+
+
+            checkNearPubs.setOnClickListener(new View.OnClickListener() {
+                 @Override
+                 public void onClick(View view) {
+                    Intent i = new Intent(AddBeerActivity.this,CheckPubsActivity.class);
+                    i.putExtra("beerName",beerName);
+                    startActivity(i);
+                 }
+             });
+
+
+
             //se è diversa da null allora è uguale a "tasted", cioè sto nella tested beer da dentro a un menu
             if(extras.getString("help") != null){
                 Log.e("HAHH","AJAJ");
                 deleteButton.setVisibility(View.GONE);
+                checkNearPubs.setVisibility(View.GONE);
             }
         }
 

@@ -14,7 +14,8 @@
         android:roundIcon="@drawable/icon_app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddOfferActivity"></activity>
+        <activity android:name=".CheckPubsActivity"></activity>
+        <activity android:name=".AddOfferActivity" />
         <activity android:name=".OfferActivity" />
         <activity android:name=".ListOffersActivity" />
         <activity

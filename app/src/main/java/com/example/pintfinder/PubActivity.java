@@ -120,7 +120,7 @@ public class PubActivity extends AppCompatActivity {
 
 
         //if you are a pubLover
-        if(activity == null) {
+        if(activity == null || activity.equals("CheckPubsActivity")) {
             cardNote.setVisibility(View.VISIBLE);
             cardOffer.setVisibility(View.VISIBLE);
 
@@ -200,14 +200,17 @@ public class PubActivity extends AppCompatActivity {
         Intent i = getIntent();
         String activity = i.getStringExtra("activity");
         if(activity == null) {
-            Intent intent = new Intent(PubActivity.this,HomePageLover.class);
-            startActivity(intent);
+            //Intent intent = new Intent(PubActivity.this,HomePageLover.class);
+            //startActivity(intent);
+            super.onBackPressed();
         }
-        else{
+        else if(activity.equals("ListPubHomeFragment") || activity.equals("UpdateMenuActivity")){
             Intent intent = new Intent(PubActivity.this,HomePageOwner.class);
             startActivity(intent);
         }
 
+        else
+            super.onBackPressed();
     }
 
 }
