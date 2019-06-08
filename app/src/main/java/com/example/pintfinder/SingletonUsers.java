@@ -54,7 +54,7 @@ public class SingletonUsers {
 
             for (int i = 0; i < SIZE_TASTED_BEERS; i++)
                 instance.georgBeers.add(instanceBeers.getBeers().get(i).getName());
-            for (int i = 0; i < 2; i++){
+            for (int i = 4; i < 6; i++){
                 instance.mariaPubs.add(instancePubs.getPubs().get(i).getName());
             }
             for (int i = 0; i < 3; i++){

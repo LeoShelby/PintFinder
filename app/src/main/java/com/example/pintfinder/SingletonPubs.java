@@ -32,12 +32,7 @@ public class SingletonPubs {
                     add("Wel Scotch");
                     add("Guinness");
                 }
-            }, new ArrayList<Offer>()  {
-                {
-                    add(new Offer("The Auld Dubliner", "Thursday 50% discount", "Every Thursday 50% discount on all beers in the menu where no other discount has been applied", "23/06/2019"));
-                    add(new Offer("The Auld Dubliner", "Belgian Beer Festival", "Every day 10% discount on all Belgian beers in the menu", "31/08/2019"));
-                }
-            }, "Very good Pub"));
+            }, new ArrayList<Offer>(), "Very good Pub"));
 
             instance.addPub(new Pub("The Brazenhead", "Via Livorno 2, Roma", "the_brazen_head", "The Brazen Head claims to be Rome's oldest pub and to have started pouring beers since 1198, despite the building being from 1750. The kitchen offers typical Irish dishes (Irish stew, stew with the Guinness, etc.) and offers live music every night.", new ArrayList<String>() {
                 {
@@ -48,11 +43,7 @@ public class SingletonPubs {
                     add("Magners");
                     add("Kilkenny");
                 }
-            }, new ArrayList<Offer>() {
-                {
-                    add(new Offer("The Brazenhead", "Friday night taste", "Every Friday 20% discount on all beers in the menu", "30/6/2019"));
-                }
-            }, "Very bad Pub"));
+            }, new ArrayList<Offer>(), "Very bad Pub"));
 
 
 
@@ -71,6 +62,50 @@ public class SingletonPubs {
                     add("Kilkenny");
                     add("Carlsberg");
                     add("Münchner Märzen");
+                }
+            }, new ArrayList<Offer>(), ""));
+
+
+            instance.addPub(new Pub("The Cobblestone", "Via Galilei 40, Roma", "the_cobblestone", "The Cobblestone is a traditional Irish pub located near the Manzoni metro station, famous for its live traditional music nights. It offers a wide selection of beers, including many produced by Dublin breweries.", new ArrayList<String>() {
+                {
+                    add("Brooklyn East IPA");
+                    add("Kilkenny");
+                    add("Münchner Märzen");
+                    add("Carlsberg");
+                    add("Tucher Weizen");
+                    add("Wel Scotch");
+                    add("Guinness");
+                }
+            }, new ArrayList<Offer>() {
+                {
+                    add(new Offer("The Cobblestone", "Thursday 50% discount", "Every Thursday 50% discount on all beers in the menu where no other discount has been applied", "23/06/2019"));
+                    add(new Offer("The Cobblestone", "Belgian Beer Festival", "Every day 10% discount on all Belgian beers in the menu", "31/08/2019"));
+                }
+            }, "Very nice pub with wide range of beers"));
+
+
+            instance.addPub(new Pub("The Temple Bar", "Via Mecenate 10, Roma", "the_temple_bar", "Decorated in typical Irish style, The Temple Bar is one of the pubs at the top of the list of pubs to visit in all the tourist guides of Rome. It offers trad music 7 days a week and is always flooded with tourists. To visit at least once.", new ArrayList<String>() {
+                {
+                    add("Grimbergen Blonde");
+                    add("Heineken");
+                    add("Carlsberg");
+                    add("Münchner Märzen");
+                    add("Magners");
+                    add("Kilkenny");
+                }
+            }, new ArrayList<Offer>() {
+                {
+                    add(new Offer("The Temple Bar", "Friday night taste", "Every Friday 20% discount on all beers in the menu", "30/6/2019"));
+                }
+            }, ""));
+
+
+            instance.addPub(new Pub("The Lord Edward", "Via Merulana 130, Roma", "the_lord_edward", "The Lord Edward is located a stone's throw from the Scala Santa, in the Manzoni area and is famous for being the oldest fish restaurant in the city. Furnished in traditional style, it offers a wide selection of beers at affordable prices.", new ArrayList<String>() {
+                {
+                    add("Hoegaarden");
+                    add("Foster's Lager");
+                    add("Magners");
+                    add("Grimbergen Blonde");
                 }
             }, new ArrayList<Offer>(), ""));
 
